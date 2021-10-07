@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="pep.per.mint.database.mapper.su.RestApiMapper">
+  	<!--
+  	<cache/>
+  	-->
+
+	<insert id="insertRestService">
+		<selectKey keyProperty="serviceId" resultType="string" order="BEFORE" >
+
+			<choose>
+				<when test="_databaseId == 'postgres'">
+			SELECT (COALESCE(MAX(SERVICE_ID::numeric),0)+1)::text FROM TSU0205
+		    	</when>
+		    	<otherwise>
+			SELECT TO_CHAR(NVL(MAX(TO_NUMBER(SERVICE_ID)+1),0)) FROM TSU0205
+		    	</otherwise>
+			</choose>
+		</selectKey>
+		INSERT INTO TSU0205 (
+		    SERVICE_ID,
+		    SERVICE_CD,
+		    SERVICE_NM,
+		    SERVICE_URI,
+		    SERVICE_TYPE,
+		    SCHEDULE_TYPE,
+		    SCHEDULE,
+		    USE_YN,
+		    PARAMS,
+		    COMMENTS,
+		    DEL_YN,
+		    REG_DATE,
+		    REG_USER
+		) VALUES (
+			#{serviceId},
+			#{serviceCd, jdbcType=VARCHAR},
+			#{serviceNm, jdbcType=VARCHAR},
+			#{serviceUri, jdbcType=VARCHAR},
+			#{serviceType, jdbcType=VARCHAR},
+			#{scheduleType, jdbcType=VARCHAR},
+			#{schedule, jdbcType=VARCHAR},
+			#{useYn, jdbcType=VARCHAR},
+		<choose>
+			<when test="_databaseId == 'postgres'">
+            #{paramsString},
+	    	</when>
+	    	<otherwise>
+            #{paramsString, jdbcType=CLOB, typeHandler=org.apache.ibatis.type.ClobTypeHandler, javaType=String},
+	    	</otherwise>
+		</choose>
+			#{comments, jdbcType=VARCHAR},
+			'N',
+			#{regDate, jdbcType=VARCHAR},
+			#{regId, jdbcType=VARCHAR}
+		)
+	</insert>
+
+	<select id="getRestServiceList" parameterType="Map" resultMap="serviceResultMap">
+		SELECT
+			SERVICE_ID,
+			SERVICE_CD,
+  			SERVICE_NM,
+  			SERVICE_URI,
+  			SERVICE_TYPE,
+  			SCHEDULE_TYPE,
+  			SCHEDULE,
+  			USE_YN,
+  			PARAMS,
+  			REG_DATE,
+  			MOD_DATE,
+  			COMMENTS
+  		FROM TSU0205
+  		WHERE 1=1
+  		AND DEL_YN= 'N'
+		<if test="serviceCd != null">
+			AND SERVICE_CD like '%'||#{serviceCd}||'%'
+		</if>
+		<if test="serviceNm != null">
+			AND SERVICE_NM like '%'||#{serviceNm}||'%'
+		</if>
+		<if test="serviceType != null">
+			AND SERVICE_TYPE = #{serviceType}
+		</if>
+	</select>
+
+
+	<select id="getRestServiceDetail" parameterType="string" resultMap="serviceResultMap">
+		SELECT
+			SERVICE_ID,
+			SERVICE_CD,
+  			SERVICE_NM,
+  			SERVICE_URI,
+  			SERVICE_TYPE,
+  			REG_DATE,
+  			MOD_DATE,
+  			COMMENTS
+		FROM TSU0205
+  		WHERE 1=1
+  		AND DEL_YN= 'N'
+		AND SERVICE_ID = #{serverId}
+	</select>
+
+	<resultMap type="Service" id="serviceResultMap">
+		<id property="serviceId" 			column="SERVICE_ID"/>
+		<result property="serviceCd"		column="SERVICE_CD"/>
+		<result property="serviceNm"		column="SERVICE_NM"/>
+		<result property="serviceUri"		column="SERVICE_URI"/>
+		<result property="serviceType"		column="SERVICE_TYPE"/>
+		<result property="scheduleType"		column="SCHEDULE_TYPE"/>
+		<result property="schedule"			column="SCHEDULE"/>
+		<result property="useYn"			column="USE_YN"/>
+		<result property="paramsString"		column="PARAMS"/>
+		<result property="comments"			column="COMMENTS"/>
+		<result property="regDate"			column="REG_DATE"/>
+		<result property="modDate"			column="MOD_DATE"/>
+	</resultMap>
+
+
+	<update id="updateRestService">
+		UPDATE TSU0205
+		   SET   SERVICE_CD 	= #{serviceCd, jdbcType=VARCHAR}
+		   		,SERVICE_NM 	= #{serviceNm, jdbcType=VARCHAR}
+				,SERVICE_URI 	= #{serviceUri, jdbcType=VARCHAR}
+				,SERVICE_TYPE   = #{serviceType, jdbcType=VARCHAR}
+				,SCHEDULE_TYPE	= #{scheduleType, jdbcType=VARCHAR}
+				,SCHEDULE		= #{schedule, jdbcType=VARCHAR}
+				,USE_YN			= #{useYn, jdbcType=VARCHAR}
+			<choose>
+				<when test="_databaseId == 'postgres'">
+		        ,PARAMS			= #{paramsString}
+			    </when>
+			    <otherwise>
+		        ,PARAMS			= #{paramsString, jdbcType=CLOB, typeHandler=org.apache.ibatis.type.ClobTypeHandler, javaType=String}
+			    </otherwise>
+			</choose>
+				,COMMENTS 		= #{comments, jdbcType=VARCHAR}
+				,MOD_DATE 		= #{modDate, jdbcType=VARCHAR}
+				,MOD_USER 		= #{modId, jdbcType=VARCHAR}
+		WHERE SERVICE_ID = #{serviceId}
+	</update>
+
+	<delete id="deleteRestService">
+		UPDATE TSU0205
+		SET DEL_YN = 'Y',
+			MOD_DATE = #{modDate},
+			MOD_USER = #{modId}
+		WHERE SERVICE_ID = #{serviceId}
+	</delete>
+</mapper>

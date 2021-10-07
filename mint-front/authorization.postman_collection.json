@@ -1,0 +1,312 @@
+{
+	"info": {
+		"_postman_id": "6d9312f1-e432-41b1-8a09-d19c8127f054",
+		"name": "authorization",
+		"description": "endpoint 개발",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "권한 소유 조회[REST-R01-AU-01-01]",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"objectType\": \"ComMessage\",\n  \"requestObject\":\n  {\n  \"objectType\" : \"AuthorityRequest\",\n  \"categoryCd\" : \"DATA\",\n  \"itemType\" : \"2\",\n  \"ownerId\" : \"shl\",\n  \"dataType\" : \"1\",\n  \"dataId\":\"F@00000484\",\n  \"authorized\" : false\n  },\n  \"startTime\": \"20190416105001001\",\n  \"endTime\": null,\n  \"errorCd\":\"0\",\n  \"errorMsg\":\"\",\n  \"userId\": \"shl\",\n  \"appId\": \"\",\n  \"checkSession\":false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/mint/au/authorities?method=GET",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"mint",
+						"au",
+						"authorities"
+					],
+					"query": [
+						{
+							"key": "method",
+							"value": "GET"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "권한 그룹 조회[REST-R01-AU-01-02]",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"objectType\": \"ComMessage\",\n  \"requestObject\":{},\n  \"startTime\": \"20190416105001001\",\n  \"endTime\": null,\n  \"errorCd\":\"0\",\n  \"errorMsg\":\"\",\n  \"userId\": \"iip\",\n  \"appId\": \"\",\n  \"checkSession\":false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/mint/au/authorities/groups?method=GET",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"mint",
+						"au",
+						"authorities",
+						"groups"
+					],
+					"query": [
+						{
+							"key": "method",
+							"value": "GET"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "권한 오브젝트 그룹 조회[REST-R01-AU-01-03]",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"objectType\": \"ComMessage\",\n  \"requestObject\":{\"categoryCd\":\"DATA\", \"dataType\":\"2\", \"dataId\": \"31\"},\n  \"startTime\": \"20190416105001001\",\n  \"endTime\": null,\n  \"errorCd\":\"0\",\n  \"errorMsg\":\"\",\n  \"userId\": \"iip\",\n  \"appId\": \"\",\n  \"checkSession\":false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/mint/au/authorities/objects/groups?method=GET",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"mint",
+						"au",
+						"authorities",
+						"objects",
+						"groups"
+					],
+					"query": [
+						{
+							"key": "method",
+							"value": "GET"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "권한 Cache 개별삭제",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"objectType\": \"ComMessage\",\n  \"requestObject\":{\"option\": \"one\", \"categoryCd\":\"DATA\", \"itemType\":\"2\", \"ownerId\":\"shl\", \"dataType\":\"1\", \"dataId\":\"F@00000484\"},\n  \"startTime\": \"20190416105001001\",\n  \"endTime\": null,\n  \"errorCd\":\"0\",\n  \"errorMsg\":\"\",\n  \"userId\": \"shl\",\n  \"appId\": \"\",\n  \"checkSession\":false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/mint/au/authorities/caches?method=DELETE",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"mint",
+						"au",
+						"authorities",
+						"caches"
+					],
+					"query": [
+						{
+							"key": "method",
+							"value": "DELETE"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "캐시된 권한 조회",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"objectType\": \"ComMessage\",\n  \"requestObject\":{\"categoryCd\":\"DATA\", \"itemType\":\"2\", \"ownerId\":\"shl\", \"dataType\":\"1\", \"dataId\":\"F@00000484\"},\n  \"startTime\": \"20190416105001001\",\n  \"endTime\": null,\n  \"errorCd\":\"0\",\n  \"errorMsg\":\"\",\n  \"userId\": \"whoana\",\n  \"appId\": \"\",\n  \"checkSession\":false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/mint/au/authorities/caches?method=GET",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"mint",
+						"au",
+						"authorities",
+						"caches"
+					],
+					"query": [
+						{
+							"key": "method",
+							"value": "GET"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "통합권한옵션설정",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"objectType\": \"ComMessage\",\n  \"requestObject\":{\"enableRegisterAuthority\":false, \"enableCheckDataAuthority\":false},\n  \"startTime\": \"20190416105001001\",\n  \"endTime\": null,\n  \"errorCd\":\"0\",\n  \"errorMsg\":\"\",\n  \"userId\": \"iip\",\n  \"appId\": \"\",\n  \"checkSession\":false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/mint/au/authorities/options?method=PUT",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"mint",
+						"au",
+						"authorities",
+						"options"
+					],
+					"query": [
+						{
+							"key": "method",
+							"value": "PUT"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "통합권한일괄생성온라인배치",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"objectType\": \"ComMessage\",\n  \"requestObject\":{\"commitCount\": 100, \"async\":true},\n  \"startTime\": \"20190416105001001\",\n  \"endTime\": null,\n  \"errorCd\":\"0\",\n  \"errorMsg\":\"\",\n  \"userId\": \"iip\",\n  \"appId\": \"\",\n  \"checkSession\":false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/mint/au/authorities/batchjobs/registers?method=POST",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"mint",
+						"au",
+						"authorities",
+						"batchjobs",
+						"registers"
+					],
+					"query": [
+						{
+							"key": "method",
+							"value": "POST"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

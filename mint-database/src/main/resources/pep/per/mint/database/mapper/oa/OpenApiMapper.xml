@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="pep.per.mint.database.mapper.oa.OpenApiMapper">
+  	<!--
+  	<cache/>
+  	-->
+	<select id="findInterfaceId" resultType="String">
+		-- find interfaceId
+		SELECT
+			distinct
+			b.INTERFACE_ID
+		FROM TRT0101 a
+				 INNER JOIN TAN0101 b
+							ON a.INTERFACE_ID = b.INTERFACE_ID
+								AND a.DEL_YN = 'N'
+								AND b.DEL_YN = 'N'
+				 INNER JOIN TIM0301 c
+							ON c.BUSINESS_ID = b.BUSINESS_ID
+								AND c.BUSINESS_CD = #{businessCd}
+				 INNER JOIN TRT0201 d
+							ON d.INTERFACE_MID = a.INTERFACE_MID
+								AND d.SYSTEM_TYPE = '2'
+								AND d.SEQ = (SELECT min(SEQ) FROM TRT0201 WHERE INTERFACE_MID = a.INTERFACE_MID AND SYSTEM_TYPE = '2')
+				 INNER JOIN TRT0202 e
+							ON e.INTERFACE_MID = a.INTERFACE_MID
+								AND e.APP_MID = d.APP_MID
+								AND e.TAG = #{serviceId}
+				 INNER JOIN TRT0203 f
+							ON f.AID = e.AID
+								AND f.APP_TYPE = e.APP_TYPE
+								AND f.CD = 'serviceId'
+								AND f.DEL_YN = 'N'
+				 INNER JOIN TAN0201 g
+							ON b.INTERFACE_ID  = g.INTERFACE_ID
+				 INNER JOIN TIM0002 h
+							ON g.CHANNEL_ID = h.CHANNEL_ID
+								AND h.CHANNEL_CD = #{channelCd}
+	</select>
+
+	<select id="findDataSetId" resultType="String">
+		SELECT DISTINCT DATASET_ID FROM TAN0501 WHERE CD = #{dataSetCd} AND DEL_YN = 'N'
+	</select>
+
+	<select id="getStatisticsInterface" parameterType="Map" resultType="java.util.LinkedHashMap">
+		SELECT
+		    TAN0201.INTEGRATION_ID AS "integrationId",
+		    TAN0201.INTERFACE_NM AS "interfaceNm",
+		    SND.SYSTEM_CD || '(' || SND.SYSTEM_NM || ')' AS "sndSystem",
+		    RCV.SYSTEM_CD || '(' || RCV.SYSTEM_NM || ')' AS "rcvSystem",
+		    TRACKING."successCnt" + TRACKING."processCnt" + TRACKING."errorCnt" AS "totalCnt",
+		    TRACKING."successCnt",
+		    TRACKING."processCnt",
+		    TRACKING."errorCnt"
+		FROM (
+		    SELECT
+		        C.INTERFACE_ID,
+		        SUM(CASE WHEN A.MSG_STATUS='00' THEN 1 ELSE 0 END) AS "successCnt",
+		        SUM(CASE WHEN A.MSG_STATUS='01' THEN 1 ELSE 0 END) AS "processCnt",
+		        SUM(CASE WHEN A.MSG_STATUS='99' THEN 1 ELSE 0 END) AS "errorCnt"
+		    FROM MASTERLOG A
+		    INNER JOIN MASTERLOG_ID_MAP B ON A.MASTERLOG_ID = B.MASTERLOG_ID
+		    AND A.MSG_DATETIME BETWEEN #{fromDate} AND #{toDate}
+		    RIGHT OUTER JOIN TAN0201 C ON C.INTEGRATION_ID = B.INTF_ID
+		    WHERE 1=1
+		    <if test="integrationId != null and integrationId !=''">
+		    AND C.INTEGRATION_ID = #{integrationId}
+		    </if>
+		    GROUP BY C.INTERFACE_ID
+		) TRACKING
+		INNER JOIN TAN0201 TAN0201 ON TRACKING.INTERFACE_ID = TAN0201.INTERFACE_ID
+		LEFT OUTER JOIN (
+		    SELECT
+		        DISTINCT
+		        TIM0101.SYSTEM_NM,
+		        TIM0101.SYSTEM_CD,
+		        TAN0213.INTERFACE_ID
+		    FROM TAN0213 TAN0213
+		    INNER JOIN TIM0101 TIM0101
+		    ON TAN0213.SYSTEM_ID = TIM0101.SYSTEM_ID
+		    AND TAN0213.NODE_TYPE = '0'
+		) SND ON SND.INTERFACE_ID = TRACKING.INTERFACE_ID
+		LEFT OUTER JOIN (
+		    SELECT
+		        DISTINCT
+		        TIM0101.SYSTEM_NM,
+		        TIM0101.SYSTEM_CD,
+		        TAN0213.INTERFACE_ID
+		    FROM TAN0213 TAN0213
+		    INNER JOIN TIM0101 TIM0101
+		    ON TAN0213.SYSTEM_ID = TIM0101.SYSTEM_ID
+		    AND TAN0213.NODE_TYPE = '2'
+		) RCV ON RCV.INTERFACE_ID = TRACKING.INTERFACE_ID
+		ORDER BY "totalCnt" DESC
+	</select>
+
+</mapper>

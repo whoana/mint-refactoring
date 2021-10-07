@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+        
+    <wb-module deploy-name="mint-batch-manager-product-3.0.0">
+                
+        <wb-resource deploy-path="/" source-path="/target-version-3.0.0/m2e-wtp/web-resources"/>
+                
+        <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
+                
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
+                
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
+                
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/target-version-3.0.0/generated-sources/annotations"/>
+        <dependent-module archiveName="mint-common-3.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/mint-common/mint-common">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="mint-database-3.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/mint-database/mint-database">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="mint-inhouse-3.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/mint-inhouse/mint-inhouse">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="mint-batch-3.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/mint-batch/mint-batch">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="mint-solution-mi-3.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/mint-solution-mi/mint-solution-mi">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+                
+        <property name="context-root" value="mint-batch-manager-product-3.0.0"/>
+                
+        <property name="java-output-path" value="/mint-batch-manager/target-version-3.0.0/classes"/>
+                
+        <property name="component.exclusion.patterns" value="view_design/**,view_dev/**,sample/**,foo.html,index.html,view/sub-op/OP-01-01-999.html,WEB-INF-3.0.0/**"/>
+            
+    </wb-module>
+    
+</project-modules>

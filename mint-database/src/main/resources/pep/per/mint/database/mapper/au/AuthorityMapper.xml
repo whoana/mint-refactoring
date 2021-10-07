@@ -1,0 +1,844 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="pep.per.mint.database.mapper.au.AuthorityMapper">
+  	<!--
+  	<cache/>
+  	-->
+	
+	<select id="getPolicies" resultMap="resultOfAuthorityPolicy">
+			SELECT
+		       a.*, b.CD AS CATEGORY_CD
+			FROM TAU0104 a
+	  INNER JOIN TAU0102 b
+			  ON a.CATEGORY_ID  = b.CATEGORY_ID
+			 AND a.DEL_YN = 'N'
+			 AND b.DEL_YN = 'N'
+			 <if test="cd!=null">
+			 AND a.CD = #{cd}
+			 </if>
+		ORDER BY b.CD, a.SEQ
+	</select>
+	<resultMap id="resultOfAuthorityPolicy" type="pep.per.mint.common.data.basic.authority.AuthorityPolicy">
+		<id 	property="categoryId" 	column="CATEGORY_ID"/>
+		<id 	property="cd" 			column="CD"/>
+		<result property="categoryCd"	column="CATEGORY_CD"/>
+		<result property="name" 		column="NM"/>
+		<result property="seq" 			column="SEQ"/>
+		<result property="operator" 	column="OPERATOR"/>
+		<result property="comments" 	column="COMMENTS"/>
+		<result property="delYn"		column="DEL_YN"/>
+		<result property="modDate"  	column="MOD_DATE"/>
+		<result property="modId"		column="MOD_USER"/>
+		<result property="regDate"		column="REG_DATE"/>
+		<result	property="regId"		column="REG_USER"/>
+	</resultMap>
+
+
+	<select id="getRegistrationOwners" resultType="Map">
+		SELECT DISTINCT '0' AS "ownerType",  a.REG_USER AS "ownerId" FROM (
+			SELECT a.REG_USER FROM TAN0201 a WHERE a.DEL_YN = 'N'
+			UNION ALL
+			SELECT a.REG_USER FROM TAN0501 a WHERE a.DEL_YN = 'N'
+			UNION ALL
+			SELECT a.REG_USER FROM TAN0503 a WHERE a.DEL_YN = 'N'
+		) a
+		UNION ALL
+		SELECT DISTINCT '1' AS "ownerType",  GRP_ID AS "ownerId" FROM TSU0107 WHERE DEFAULT_GROUP = 'Y'
+		ORDER BY "ownerType", "ownerId"
+	</select>
+
+	<select id="getRegistrationUsers" resultType="string">
+		SELECT DISTINCT a.OWNER_ID FROM (
+			   SELECT
+				   a.REG_USER  AS OWNER_ID
+			   FROM TAN0201 a
+			   WHERE a.DEL_YN = 'N'
+			   UNION ALL
+			   SELECT
+				   a.REG_USER  AS OWNER_ID
+			   FROM TAN0501 a
+			   WHERE a.DEL_YN = 'N'
+			   UNION ALL
+			   SELECT
+				   a.REG_USER  AS OWNER_ID
+			   FROM TAN0503 a
+			   WHERE a.DEL_YN = 'N'
+		) a
+		ORDER BY 1 desc
+	</select>
+
+	<select id="getRegistrationGroups" resultType="string">
+		SELECT GRP_ID FROM TSU0107
+	</select>
+
+	<select id="getRegistrationDataList" resultMap="resultAuthorityRegistrationData">
+		SELECT '0' AS OWNER_TYPE, a.REG_USER AS OWNER_ID, '1' AS DATA_TYPE, a.INTERFACE_ID AS DATA_ID FROM TAN0201 a WHERE a.DEL_YN = 'N'
+		UNION ALL
+		SELECT '0' AS OWNER_TYPE, a.REG_USER AS OWNER_ID, '2' AS DATA_TYPE, a.DATASET_ID AS DATA_ID FROM TAN0501 a WHERE a.DEL_YN = 'N'
+		UNION ALL
+		SELECT '0' AS OWNER_TYPE, a.REG_USER AS OWNER_ID, '3' AS DATA_TYPE, a.MAP_ID AS DATA_ID FROM TAN0503 a WHERE a.DEL_YN = 'N'
+		UNION ALL
+		SELECT '1' AS OWNER_TYPE, b.GRP_ID AS OWNER_ID, '1' AS DATA_TYPE, a.INTERFACE_ID AS DATA_ID FROM TAN0201 a INNER JOIN TSU0107 b ON a.REG_USER = b.USER_ID AND a.DEL_YN = 'N' AND b.DEFAULT_GROUP = 'Y'
+		UNION ALL
+		SELECT '1' AS OWNER_TYPE, b.GRP_ID AS OWNER_ID, '2' AS DATA_TYPE, a.DATASET_ID AS DATA_ID FROM TAN0501 a INNER JOIN TSU0107 b ON a.REG_USER = b.USER_ID AND a.DEL_YN = 'N' AND b.DEFAULT_GROUP = 'Y'
+		UNION ALL
+		SELECT '1' AS OWNER_TYPE, b.GRP_ID AS OWNER_ID, '3' AS DATA_TYPE, a.MAP_ID AS DATA_ID FROM TAN0503 a INNER JOIN TSU0107 b ON a.REG_USER = b.USER_ID AND a.DEL_YN = 'N' AND b.DEFAULT_GROUP = 'Y'
+		ORDER BY 1,2,3
+	</select>
+
+	<select id="getUserRegistrationDataList" resultMap="resultAuthorityRegistrationData">
+		SELECT
+			 '0'			 AS OWNER_TYPE
+			 ,a.REG_USER  	 AS OWNER_ID
+			 ,'1' 			 AS DATA_TYPE
+			 ,a.INTERFACE_ID AS DATA_ID
+		FROM TAN0201 a
+		WHERE a.DEL_YN = 'N' AND a.REG_USER  = #{userId}
+		UNION ALL
+		SELECT
+			'0'				AS OWNER_TYPE
+			 ,a.REG_USER  	AS OWNER_ID
+			 ,'2' 			AS DATA_TYPE
+			 ,a.DATASET_ID 	AS DATA_ID
+		FROM TAN0501 a
+		WHERE a.DEL_YN = 'N' AND a.REG_USER  = #{userId}
+		UNION ALL
+		SELECT
+			'0'				AS OWNER_TYPE
+			 ,a.REG_USER  	AS OWNER_ID
+			 ,'3' 			AS DATA_TYPE
+			 ,a.MAP_ID 		AS DATA_ID
+		FROM TAN0503 a
+		WHERE a.DEL_YN = 'N' AND a.REG_USER  = #{userId}
+	</select>
+
+	<select id="getGroupRegistrationDataList" resultMap="resultAuthorityRegistrationData">
+		SELECT
+			DISTINCT
+			'1'				AS OWNER_TYPE
+		   ,b.GRP_ID 	 	AS OWNER_ID
+		   ,'1' 			AS DATA_TYPE
+		   ,a.INTERFACE_ID 	AS DATA_ID
+		  FROM TAN0201 a
+		 INNER JOIN TSU0107 b
+			ON a.REG_USER = b.USER_ID
+			AND a.DEL_YN = 'N'
+			AND b.GRP_ID = #{groupId}
+		UNION ALL
+		SELECT
+			DISTINCT
+			'1'				AS OWNER_TYPE
+		   ,b.GRP_ID 	 	AS OWNER_ID
+		   ,'2' 			AS DATA_TYPE
+		   ,a.DATASET_ID 	AS DATA_ID
+		  FROM TAN0501 a
+		 INNER JOIN TSU0107 b
+			ON a.REG_USER = b.USER_ID
+			AND a.DEL_YN = 'N'
+			AND b.GRP_ID = #{groupId}
+		UNION ALL
+		SELECT
+			DISTINCT
+			'1'				AS OWNER_TYPE
+		   ,b.GRP_ID 	 	AS OWNER_ID
+		   ,'3' 			AS DATA_TYPE
+		   ,a.MAP_ID 		AS DATA_ID
+		  FROM TAN0503 a
+		 INNER JOIN TSU0107 b
+			ON a.REG_USER = b.USER_ID
+			AND a.DEL_YN = 'N'
+			AND b.GRP_ID = #{groupId}
+	</select>
+
+	<resultMap id="resultAuthorityRegistrationData" type="pep.per.mint.common.data.basic.authority.AuthorityRegistrationData">
+		<result property="dataType" 	column="DATA_TYPE"/>
+		<result property="dataId" 		column="DATA_ID"/>
+		<result property="ownerType" 	column="OWNER_TYPE"/>
+		<result property="ownerId" 		column="OWNER_ID"/>
+	</resultMap>
+
+
+
+	<select id="getRegistrationPolicies" resultMap="resultRegistrationPolicy" parameterType="java.util.Map">
+		SELECT
+			a.*, b.CD AS CATEGORY_CD
+		  FROM TAU0105 a
+		 INNER JOIN TAU0102 b
+		    ON a.CATEGORY_ID  = b.CATEGORY_ID
+		   AND a.DEL_YN = 'N'
+		   AND b.DEL_YN = 'N'
+		<if test="cd!=null">
+		   AND a.CD = #{cd}
+		</if>
+		<if test="categoryCd!=null">
+		   AND b.CD = #{categoryCd}
+		</if>
+		<if test="categoryId!=null">
+		   AND b.CATEGORY_ID = #{categoryId}
+		</if>
+		<if test="ownerType!=null">
+		   AND a.OWNER_TYPE = #{ownerType}
+		</if>
+		<if test="dataType!=null">
+		   AND a.DATA_TYPE = #{dataType}
+		</if>
+		<if test="itemType!=null">
+		   AND a.ITEM_TYPE = #{itemType}
+		</if>
+		 ORDER BY b.CD, a.SEQ
+	</select>
+
+	<resultMap id="resultRegistrationPolicy" type="pep.per.mint.common.data.basic.authority.RegistrationPolicy">
+		<id 	property="categoryId" 	column="CATEGORY_ID"/>
+		<id 	property="ownerType" 	column="OWNER_TYPE"/>
+		<id 	property="dataType"  	column="DATA_TYPE"/>
+		<id 	property="itemType"  	column="ITEM_TYPE"/>
+		<result property="name"			column="NM"/>
+		<result property="seq"			column="SEQ"/>
+		<result property="categoryCd"	column="CATEGORY_CD"/>
+		<result property="comments" 	column="COMMENTS"/>
+		<result property="delYn"		column="DEL_YN"/>
+		<result property="modDate"  	column="MOD_DATE"/>
+		<result property="modId"		column="MOD_USER"/>
+		<result property="regDate"		column="REG_DATE"/>
+		<result	property="regId"		column="REG_USER"/>
+	</resultMap>
+
+
+	<resultMap id="resultGAuthority" type="pep.per.mint.common.data.basic.authority.GAuthority">
+		<id	property="authorityId" 		column="A_AUTH_ID"/>
+		<result property="name"			column="A_NM"/>
+		<result property="cd"			column="A_CD"/>
+		<result property="ownerId"  	column="A_OWNER_ID"/>
+		<result property="ownerType" 	column="A_OWNER_TYPE"/>
+		<result property="comments" 	column="A_COMMENTS"/>
+		<result property="delYn"		column="A_DEL_YN"/>
+		<result property="modDate"  	column="A_MOD_DATE"/>
+		<result property="modId"		column="A_MOD_USER"/>
+		<result property="regDate"		column="A_REG_DATE"/>
+		<result	property="regId"		column="A_REG_USER"/>
+
+		<association property="category" javaType="pep.per.mint.common.data.basic.authority.Category">
+			<id property="categoryId" 	column="A_CATEGORY_ID"/>
+			<result property="name"		column="B_NM"/>
+			<result property="cd"		column="B_CD"/>
+			<result property="comments" column="B_COMMENTS"/>
+			<result property="delYn"	column="B_DEL_YN"/>
+			<result property="modDate"  column="B_MOD_DATE"/>
+			<result property="modId"	column="B_MOD_USER"/>
+			<result property="regDate"	column="B_REG_DATE"/>
+			<result	property="regId"	column="B_REG_USER"/>
+		</association>
+
+
+
+		<collection property="objectList" ofType="pep.per.mint.common.data.basic.authority.AuthorityObject">
+			<id	property="categoryId" 	column="A_CATEGORY_ID"/>
+			<id	property="authorityId" 	column="A_AUTH_ID"/>
+			<id property="dataType"		column="D_DATA_TYPE"/>
+			<id property="dataId"		column="D_DATA_ID"/>
+
+			<result property="comments" column="D_COMMENTS"/>
+			<result property="delYn"	column="D_DEL_YN"/>
+			<result property="modDate"  column="D_MOD_DATE"/>
+			<result property="modId"	column="D_MOD_USER"/>
+			<result property="regDate"	column="D_REG_DATE"/>
+			<result	property="regId"	column="D_REG_USER"/>
+
+			<collection property="authorityItems" ofType="pep.per.mint.common.data.basic.authority.AuthorityItem">
+				<id	property="categoryId" 	column="A_CATEGORY_ID"/>
+				<id	property="authorityId" 	column="A_AUTH_ID"/>
+				<id property="dataType"		column="D_DATA_TYPE"/>
+				<id property="dataId"		column="D_DATA_ID"/>
+				<id property="type"			column="E_ITEM_TYPE"/>
+				<result property="value"	column="E_VALUE"/>
+				<result property="comments" column="E_COMMENTS"/>
+				<result property="delYn"	column="E_DEL_YN"/>
+				<result property="modDate"  column="E_MOD_DATE"/>
+				<result property="modId"	column="E_MOD_USER"/>
+				<result property="regDate"	column="E_REG_DATE"/>
+				<result	property="regId"	column="E_REG_USER"/>
+			</collection>
+		</collection>
+	</resultMap>
+
+	<select id="getAuthorities" resultMap="resultGAuthority">
+		SELECT
+			 a.AUTH_ID		as A_AUTH_ID
+			,a.CATEGORY_ID	as A_CATEGORY_ID
+			,a.NM			as A_NM
+			,a.CD			as A_CD
+			,a.COMMENTS		as A_COMMENTS
+			,a.DEL_YN		as A_DEL_YN
+			,a.MOD_DATE		as A_MOD_DATE
+			,a.MOD_USER		as A_MOD_USER
+			,a.REG_DATE		as A_REG_DATE
+			,a.REG_USER		as A_REG_USER
+			,c.OWNER_TYPE   as A_OWNER_TYPE
+			,c.OWNER_ID     as A_OWNER_ID
+			,b.CD			as B_CD
+			,b.NM			as B_NM
+			,b.COMMENTS		as B_COMMENTS
+			,b.DEL_YN		as B_DEL_YN
+			,b.MOD_DATE		as B_MOD_DATE
+			,b.MOD_USER		as B_MOD_USER
+			,b.REG_DATE		as B_REG_DATE
+			,b.REG_USER		as B_REG_USER		     
+			,d.DATA_TYPE    as D_DATA_TYPE
+		    ,d.DATA_ID		as D_DATA_ID
+			,d.COMMENTS		as D_COMMENTS
+			,d.DEL_YN		as D_DEL_YN
+			,d.MOD_DATE		as D_MOD_DATE
+			,d.MOD_USER		as D_MOD_USER
+			,d.REG_DATE		as D_REG_DATE
+			,d.REG_USER		as D_REG_USER
+			,e.ITEM_TYPE	as E_ITEM_TYPE
+			,e.VALUE		as E_VALUE
+			,e.COMMENTS		as E_COMMENTS
+			,e.DEL_YN		as E_DEL_YN
+			,e.MOD_DATE		as E_MOD_DATE
+			,e.MOD_USER		as E_MOD_USER
+			,e.REG_DATE		as E_REG_DATE
+			,e.REG_USER		as E_REG_USER
+		FROM TAU0101 a
+		INNER JOIN TAU0102 b
+		ON a.CATEGORY_ID  = b.CATEGORY_ID
+		<if test="categoryCd!=null">
+	    AND b.CD = #{categoryCd}
+		</if>
+		AND a.DEL_YN  = 'N'
+		AND b.DEL_YN  = 'N'
+		INNER JOIN TAU0201 c
+		 ON a.CATEGORY_ID = c.CATEGORY_ID
+		AND a.AUTH_ID     = c.AUTH_ID
+		AND c.DEL_YN      = 'N'
+		AND c.OWNER_TYPE  = #{ownerType}
+		<if test="ownerId!=null">
+		AND c.OWNER_ID    = #{ownerId}
+		</if>
+		INNER JOIN TAU0301 d
+		 ON a.CATEGORY_ID  = d.CATEGORY_ID
+		AND a.AUTH_ID      = d.AUTH_ID
+		<if test="dataType!=null">
+		AND d.DATA_TYPE    = #{dataType}
+		</if>
+		<if test="dataId!=null">
+		AND d.DATA_ID      = #{dataId}
+		</if>
+		INNER JOIN TAU0302 e
+		 ON a.CATEGORY_ID  = e.CATEGORY_ID
+		AND a.AUTH_ID      = e.AUTH_ID
+		AND e.DATA_TYPE    = d.DATA_TYPE
+		AND e.DATA_ID      = d.DATA_ID
+		<if test="itemType!=null">
+		AND e.ITEM_TYPE	   = #{itemType}
+		</if>
+	</select>
+
+	<resultMap id="resultUserGroup" type="pep.per.mint.common.data.basic.authority.AuthorityUserGroup">
+		<id 	property="groupId" 		column="GRP_ID"/>
+		<result property="name" 		column="NM"/>
+		<result property="cd" 			column="CD"/>
+		<result property="defaultGroup" column="DEFAULT_GROUP"/>
+		<result property="comments" 	column="COMMENTS"/>
+		<result property="delYn"		column="DEL_YN"/>
+		<result property="modDate"  	column="MOD_DATE"/>
+		<result property="modId"		column="MOD_USER"/>
+		<result property="regDate"		column="REG_DATE"/>
+		<result	property="regId"		column="REG_USER"/>
+	</resultMap>
+
+	<select id="getUserGroups" resultMap="resultUserGroup">
+		SELECT  
+			 b.GRP_ID
+			,b.NM
+			,b.CD
+			,a.DEFAULT_GROUP
+			,b.COMMENTS
+			,b.DEL_YN
+			,b.MOD_DATE
+			,b.MOD_USER
+			,b.REG_DATE
+			,b.REG_USER
+		  FROM TSU0107 a
+	INNER JOIN TSU0106 b
+	        ON a.GRP_ID = b.GRP_ID 
+	       AND b.DEL_YN = 'N'
+	       <if test="userId!=null">
+		   AND a.USER_ID = #{userId}
+		   </if>
+		   <if test="groupId!=null">
+		   AND b.GRP_ID = #{groupId}
+		   </if>
+		   <if test="defaultGroup!=null">
+		   AND a.DEFAULT_GROUP = #{defaultGroup}
+		   </if>
+	</select>
+	
+	
+	<select id="getAuthorityObjectGroup" resultMap="resultUserGroup">
+	SELECT 
+	 		 c.GRP_ID
+			,c.NM
+			,c.CD
+			,'N' as DEFAULT_GROUP
+			,c.COMMENTS
+			,c.DEL_YN
+			,c.MOD_DATE
+			,c.MOD_USER
+			,c.REG_DATE
+			,c.REG_USER 
+		  FROM TAU0301 a 
+	INNER JOIN TAU0201 b 
+			ON a.AUTH_ID  	 = b.AUTH_ID 
+		   AND a.CATEGORY_ID = b.CATEGORY_ID 
+		   AND a.CATEGORY_ID = #{categroyId}
+		   AND a.DATA_TYPE   = #{dataType}
+		   AND a.DATA_ID 	 = #{dataId}
+	INNER JOIN TSU0106 c
+	        ON c.GRP_ID = b.OWNER_ID
+	       AND b.CATEGORY_ID =  b.CATEGORY_ID 
+	       AND b.OWNER_TYPE  = '1' 		
+	       AND c.DEL_YN 	 = 'N'   
+	</select>
+
+	<resultMap id="resultUserRole" type="pep.per.mint.common.data.basic.authority.AuthorityUserRole">
+		<id property="roleId" column="ROLE_ID"/>
+	</resultMap>
+
+	<select id="getUserRule" resultMap="resultUserRole">
+		SELECT * FROM TSU0101 WHERE USER_ID = #{userId}
+	</select>
+
+	<select id="getOwnerId" resultType="String">
+		SELECT REG_USER FROM
+		<choose>
+			<when test='dataType.equals("0")'>TAN0101 WHERE REQUIREMENT_ID = #{dataId}</when>
+			<when test='dataType.equals("1")'>TAN0201 WHERE INTERFACE_ID = #{dataId}</when>
+			<when test='dataType.equals("2")'>TAN0501 WHERE DATASET_ID = #{dataId}</when>
+			<when test='dataType.equals("3")'>TAN0503 WHERE MAP_ID = #{dataId}</when>
+			<when test='dataType.equals("4")'>TRT0101 WHERE INTERFACE_MID = #{dataId}</when>
+		</choose>
+	</select>
+
+
+
+	<!--public AuthorityOwner getAuthorityOwner(@Param("categoryId") String categoryId, @Param("ownerType") String ownerType, @Param("ownerId") String ownerId) throws Exception;public-->
+	<select id="getAuthorityOwners" resultMap="resultAuthorityOwner">
+		SELECT *
+		FROM TAU0201 a
+		WHERE a.CATEGORY_ID = #{categoryId}
+		  AND a.OWNER_TYPE 	= #{ownerType}
+		  AND a.OWNER_ID 	= #{ownerId}
+	</select>
+
+	<resultMap id="resultAuthorityOwner" type="pep.per.mint.common.data.basic.authority.AuthorityOwner">
+		<id	property="categoryId" 	column="CATEGORY_ID"/>
+		<id	property="authorityId" 	column="AUTH_ID"/>
+		<id	property="ownerType" 	column="OWNER_TYPE"/>
+		<id	property="ownerId" 		column="OWNER_ID"/>
+		<result property="comments" column="COMMENTS"/>
+		<result property="delYn"	column="DEL_YN"/>
+		<result property="modDate"  column="MOD_DATE"/>
+		<result property="modId"	column="MOD_USER"/>
+		<result property="regDate"	column="REG_DATE"/>
+		<result	property="regId"	column="REG_USER"/>
+	</resultMap>
+
+
+	<!--public List<AuthorityObject> getAuthorityObjects(@Param("categoryId") String categoryId, @Param("authorityId") String authorityId, @Param("dataType") String dataType, @Param("dataId") String dataId) throws Exception;-->
+	<select id="getAuthorityObjects" resultMap="resultAuthorityObject">
+		SELECT *
+		FROM TAU0301 a
+		WHERE a.CATEGORY_ID = #{categoryId}
+		  AND a.AUTH_ID 	= #{authorityId}
+		  AND a.DATA_TYPE 	= #{dataType}
+		  AND a.DATA_ID 	= #{dataId}
+		  AND a.DEL_YN 		= 'N'
+	</select>
+
+	<resultMap id="resultAuthorityObject" type="pep.per.mint.common.data.basic.authority.AuthorityObject">
+		<id	property="categoryId" 	column="CATEGORY_ID"/>
+		<id	property="authorityId" 	column="AUTH_ID"/>
+		<id	property="dataType" 	column="DATA_TYPE"/>
+		<id	property="dataId" 		column="DATA_ID"/>
+		<result property="comments" column="COMMENTS"/>
+		<result property="delYn"	column="DEL_YN"/>
+		<result property="modDate"  column="MOD_DATE"/>
+		<result property="modId"	column="MOD_USER"/>
+		<result property="regDate"	column="REG_DATE"/>
+		<result	property="regId"	column="REG_USER"/>
+	</resultMap>
+
+	<!--public List<AuthorityItem> getAuthorityItems(Map) throws Exception;-->
+	<select id="getAuthorityItems" resultMap="resultAuthorityItem">
+		SELECT *
+		FROM TAU0302 a
+		WHERE 1 = 1
+		<if test = 'categoryId != null and categoryId neq ""'>		
+		  AND a.CATEGORY_ID = #{categoryId}
+		</if> 
+		<if test = 'authorityId != null and authorityId neq ""'>
+		  AND a.AUTH_ID 	= #{authorityId}
+		</if>
+		<if test = 'dataType != null and dataType neq ""'>
+		  AND a.DATA_TYPE 	= #{dataType}
+		</if>
+		<if test = 'dataId != null and dataId neq ""'>
+		  AND a.DATA_ID 	= #{dataId}
+		</if>
+		<if test = 'itemType != null and itemType neq ""'>
+		  AND a.ITEM_TYPE	= #{itemType}
+		</if>
+		  AND a.DEL_YN = 'N'
+		  
+	</select>
+	<resultMap id="resultAuthorityItem" type="pep.per.mint.common.data.basic.authority.AuthorityItem">
+		<id	property="categoryId" 	column="CATEGORY_ID"/>
+		<id	property="authorityId" 	column="AUTH_ID"/>
+		<id	property="dataType" 	column="DATA_TYPE"/>
+		<id	property="dataId" 		column="DATA_ID"/>
+		<id	property="type" 		column="ITEM_TYPE"/>
+		<result	property="value" 	column="VALUE"/>
+		<result property="comments" column="COMMENTS"/>
+		<result property="delYn"	column="DEL_YN"/>
+		<result property="modDate"  column="MOD_DATE"/>
+		<result property="modId"	column="MOD_USER"/>
+		<result property="regDate"	column="REG_DATE"/>
+		<result	property="regId"	column="REG_USER"/>
+	</resultMap>
+
+	<!--public Category getCategory(String cd) throws Exception;-->
+	<select id="getCategory" resultMap="resultCategory">
+		SELECT *
+		FROM TAU0102 a
+		WHERE a.CD = #{cd}
+		  AND a.DEL_YN = 'N'
+	</select>
+
+
+	<resultMap id="resultCategory" type="pep.per.mint.common.data.basic.authority.Category">
+		<id	property="categoryId" 	column="CATEGORY_ID"/>
+		<result	property="name" 	column="NM"/>
+		<result	property="cd" 		column="CD"/>
+		<result property="comments" column="COMMENTS"/>
+		<result property="delYn"	column="DEL_YN"/>
+		<result property="modDate"  column="MOD_DATE"/>
+		<result property="modId"	column="MOD_USER"/>
+		<result property="regDate"	column="REG_DATE"/>
+		<result	property="regId"	column="REG_USER"/>
+	</resultMap>
+
+	<insert id="insertGAuthorityList" parameterType="java.util.Map" databaseId="oracle">
+		INSERT ALL
+		<foreach collection="list" item="item" separator=" " close="SELECT * FROM dual">
+		INTO TAU0101 (
+			CATEGORY_ID
+			,AUTH_ID
+			,NM
+			,CD
+			,COMMENTS
+			,DEL_YN
+			,REG_DATE
+			,REG_USER
+		) VALUES
+		(
+			 #{item.category.categoryId}
+			,#{item.authorityId}
+			,#{item.name}
+			,#{item.cd}
+			,#{item.comments}
+			,'N'
+			,#{item.regDate}
+			,#{item.regId}
+		)
+		</foreach>
+	</insert>
+
+	<!--public void insertGAuthority(GAuthority authority) throws Exception;-->
+	<insert id="insertGAuthority" parameterType="pep.per.mint.common.data.basic.authority.GAuthority">
+		<selectKey keyProperty="authorityId" resultType="string" order="BEFORE" >
+			<choose>
+				<when test="_databaseId == 'postgres'">
+					SELECT (COALESCE(MAX(AUTH_ID::numeric),0)+1)::text FROM TAU0101
+				</when>
+				<otherwise>
+					SELECT TO_CHAR(NVL(MAX(TO_NUMBER(AUTH_ID)),0) + 1) FROM TAU0101
+				</otherwise>
+			</choose>
+		</selectKey>
+
+
+		INSERT INTO TAU0101 (
+			 CATEGORY_ID
+			,AUTH_ID
+			,NM
+			,CD
+			,COMMENTS
+			,DEL_YN
+			,REG_DATE
+			,REG_USER
+		    ) VALUES (
+		     #{category.categoryId}
+		    ,#{authorityId}
+		    ,#{name}
+		    ,#{cd}
+		    ,#{comments}
+		    ,'N'
+		    ,#{regDate}
+		    ,#{regId}
+			)
+	</insert>
+
+
+	<insert id="insertGAuthorityNoGenId" parameterType="pep.per.mint.common.data.basic.authority.GAuthority">
+		 
+		INSERT INTO TAU0101 (
+			 CATEGORY_ID
+			,AUTH_ID
+			,NM
+			,CD
+			,COMMENTS
+			,DEL_YN
+			,REG_DATE
+			,REG_USER
+		    ) VALUES (
+		     #{category.categoryId}
+		    ,#{authorityId}
+		    ,#{name}
+		    ,#{cd}
+		    ,#{comments}
+		    ,'N'
+		    ,#{regDate}
+		    ,#{regId}
+			)
+	</insert>
+	
+	<insert id="insertAuthorityObjectList" parameterType="java.util.Map" databaseId="oracle">
+		INSERT ALL
+		<foreach collection="list" item="item" separator=" " close="SELECT * FROM dual">
+		INTO TAU0301 (
+			 CATEGORY_ID
+			,AUTH_ID
+			,DATA_TYPE
+			,DATA_ID
+			,COMMENTS
+			,DEL_YN
+			,REG_DATE
+			,REG_USER
+		) VALUES (
+			 #{item.categoryId}
+			,#{item.authorityId}
+			,#{item.dataType}
+			,#{item.dataId}
+			,#{item.comments}
+			,'N'
+			,#{item.regDate}
+			,#{item.regId}
+		 )
+		</foreach>
+	</insert>
+
+	<!--public void insertAuthorityObject(AuthorityObject ao) throws Exception;-->
+	<insert id="insertAuthorityObject" parameterType="pep.per.mint.common.data.basic.authority.AuthorityObject">
+		INSERT INTO TAU0301 (
+		     CATEGORY_ID
+		    ,AUTH_ID
+		    ,DATA_TYPE
+		    ,DATA_ID
+			,COMMENTS
+			,DEL_YN
+			,REG_DATE
+			,REG_USER
+		) VALUES (
+			#{categoryId}
+		   ,#{authorityId}
+		   ,#{dataType}
+		   ,#{dataId}
+		   ,#{comments}
+		   ,'N'
+		   ,#{regDate}
+		   ,#{regId}
+		   )
+	</insert>
+
+
+	<insert id="insertAuthorityItemAsPolicy" parameterType="Map">
+		INSERT INTO TAU0302 (
+							 CATEGORY_ID
+							,AUTH_ID
+							,DATA_TYPE
+							,DATA_ID
+							,ITEM_TYPE
+							,VALUE
+							,COMMENTS
+							,DEL_YN
+							,REG_DATE
+							,REG_USER
+		)
+		SELECT
+			  #{categoryId}
+			 ,#{authorityId}
+			 ,DATA_TYPE
+			 ,#{dataId}
+			 ,ITEM_TYPE
+			 ,#{value}
+			 ,#{comments}
+			 ,'N'
+			 ,#{regDate}
+			 ,#{regId}
+		  FROM TAU0105 WHERE OWNER_TYPE = #{ownerType} AND DATA_TYPE = #{dataType}
+	</insert>
+
+	<insert id="insertAuthorityItemList" parameterType="java.util.Map" databaseId="oracle">
+		INSERT ALL
+		<foreach collection="list" item="item" separator=" " close="SELECT * FROM dual">
+		INTO TAU0302 (
+			 CATEGORY_ID
+			,AUTH_ID
+			,DATA_TYPE
+			,DATA_ID
+			,ITEM_TYPE
+			,VALUE
+			,COMMENTS
+			,DEL_YN
+			,REG_DATE
+			,REG_USER
+		) VALUES (
+			 #{item.categoryId}
+			,#{item.authorityId}
+			,#{item.dataType}
+			,#{item.dataId}
+			,#{item.type}
+			,#{item.value}
+			,#{item.comments}
+			,'N'
+			,#{item.regDate}
+			,#{item.regId}
+		)
+
+		</foreach>
+	</insert>
+
+	<!--public void insertAuthorityItem(AuthorityItem item) throws Exception;-->
+	<insert id="insertAuthorityItem" parameterType="pep.per.mint.common.data.basic.authority.AuthorityItem">
+		INSERT INTO TAU0302 (
+		     CATEGORY_ID
+		    ,AUTH_ID
+		    ,DATA_TYPE
+		    ,DATA_ID
+		    ,ITEM_TYPE
+		    ,VALUE
+		    ,COMMENTS
+		    ,DEL_YN
+		    ,REG_DATE
+		    ,REG_USER
+		    ) VALUES (
+			#{categoryId}
+		   ,#{authorityId}
+		   ,#{dataType}
+		   ,#{dataId}
+		   ,#{type}
+		   ,#{value}
+		   ,#{comments}
+		   ,'N'
+		   ,#{regDate}
+		   ,#{regId}
+			)
+	</insert>
+
+	<insert id="insertAuthorityOwnerList" parameterType="java.util.Map" databaseId="oracle">
+		INSERT ALL
+		<foreach collection="list" item="item" separator=" " close="SELECT * FROM dual">
+		INTO TAU0201 (
+			CATEGORY_ID, AUTH_ID, OWNER_ID, OWNER_TYPE, COMMENTS, DEL_YN, REG_DATE, REG_USER
+		) VALUES
+		(
+			 #{item.categoryId}
+			,#{item.authorityId}
+			,#{item.ownerId}
+			,#{item.ownerType}
+			,#{item.comments}
+			,'N'
+			,#{item.regDate}
+			,#{item.regId}
+		)
+		</foreach>
+	</insert>
+
+	<!--public void insertAuthorityOwner(AuthorityOwner owner) throws Exception;-->
+	<insert id="insertAuthorityOwner" parameterType="pep.per.mint.common.data.basic.authority.AuthorityOwner">
+		INSERT INTO TAU0201 (
+		    CATEGORY_ID, AUTH_ID, OWNER_ID, OWNER_TYPE, COMMENTS, DEL_YN, REG_DATE, REG_USER
+		) VALUES (
+			#{categoryId}
+		   ,#{authorityId}
+		   ,#{ownerId}
+		   ,#{ownerType}
+		   ,#{comments}
+		   ,'N'
+		   ,#{regDate}
+		   ,#{regId}
+		   )
+
+	</insert>
+
+
+<!--	public void deleteAllOwners() throws Exception;-->
+	<delete id="deleteAllOwners">
+		DELETE FROM TAU0201
+		<if test="categoryId!=null">
+			WHERE CATEGORY_ID = #{categoryId}
+		</if>
+	</delete>
+
+<!--	public void deleteAllAuthorityItems() throws Exception;-->
+	<delete id="deleteAllAuthorityItems">
+		DELETE FROM tau0302
+		<if test="categoryId!=null">
+			WHERE CATEGORY_ID = #{categoryId}
+		</if>
+	</delete>
+
+<!--	public void deleteAllAuthorityObjects() throws Exception;-->
+	<delete id="deleteAllAuthorityObjects">
+		DELETE FROM tau0301
+		<if test="categoryId!=null">
+			WHERE CATEGORY_ID = #{categoryId}
+		</if>
+	</delete>
+
+<!--	public void deleteAllAuthorities() throws Exception;-->
+	<delete id="deleteAllAuthorities">
+		DELETE FROM tau0101
+		<if test="categoryId!=null">
+			WHERE CATEGORY_ID = #{categoryId}
+		</if>
+	</delete>
+
+	<delete id="deleteAuthorityObject" parameterType="AuthorityObject">
+		DELETE FROM tau0301 WHERE CATEGORY_ID = #{categoryId} AND DATA_TYPE = #{dataType} AND DATA_ID = #{dataId}
+	</delete>
+
+	<delete id="deleteAuthorityItems" parameterType="AuthorityObject">
+		DELETE FROM tau0302 WHERE CATEGORY_ID = #{categoryId} AND DATA_TYPE = #{dataType} AND DATA_ID = #{dataId}
+	</delete>
+
+
+	<select id="getCacheKeys" resultType="String">
+		SELECT  
+			b.CD||'@'||a.ITEM_TYPE||'@'||c.OWNER_ID||'@'||a.DATA_TYPE||'@'||a.DATA_ID AS CACHE_KEY
+		  FROM TAU0302 a
+	INNER JOIN TAU0102 b 
+	        ON a.CATEGORY_ID = b.CATEGORY_ID 
+	       AND b.CD 		 = #{categoryCd}
+	       AND a.DATA_TYPE   = #{dataType} 
+	       AND a.DATA_ID 	 = #{dataId}
+	INNER JOIN TAU0201 c 
+	        ON a.CATEGORY_ID = c.CATEGORY_ID 
+	       AND a.AUTH_ID  	 = c.AUTH_ID
+	       AND c.OWNER_ID    = #{ownerId}
+	</select>
+</mapper>

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="pep.per.mint.database.mapper.vc.VersionControlMapper">
+  	<!--
+  	<cache/>
+  	-->
+
+	<insert id="insertVersionData" parameterType="pep.per.mint.common.data.basic.version.VersionData">
+
+		<selectKey keyProperty="versionNumber" resultType="int" order="BEFORE">
+			SELECT COALESCE(MAX(VERSION_NUMBER) + 1, 1)
+			  FROM TVS0101
+			 WHERE DATA_TYPE = #{dataType}
+			   AND DATA_ID   = #{dataId}
+		</selectKey>
+
+		INSERT INTO TVS0101 (
+		 	 DATA_TYPE
+			,DATA_ID
+			,VERSION
+			,VERSION_NUMBER
+			,HEAD
+			,COMMIT_DATE
+			,COMMIT_USER_ID
+			,MSG
+			,CONTENTS
+			,CONTENTS_SIZE
+		 	,TAG
+		) VALUES (
+		     #{dataType}
+		    ,#{dataId}
+		    ,#{version}
+		    ,#{versionNumber}
+		    ,#{isHead, typeHandler=pep.per.mint.database.mybatis.handler.StringYnTypeHandler}
+		    ,#{commitDate}
+		    ,#{commitUserId}
+		    ,#{msg, jdbcType=CLOB}
+		    ,#{contents, jdbcType=BLOB}
+		    ,#{size}
+		    ,#{tag}
+		)
+	</insert>
+
+	<update id="deleteVersionData">
+		UPDATE TVS0101
+		SET DEL_YN 		     = 'Y'
+		   ,MOD_DATE 		 = #{modDate}
+		   ,MOD_USER_ID 	 = #{modUserId}
+		   ,MSG 			 = #{msg} || MSG
+		WHERE DATA_TYPE 	 = #{dataType}
+		  AND DATA_ID 		 = #{dataId}
+	</update>
+
+	<update id="updateHeadVersionData">
+	<![CDATA[
+		UPDATE TVS0101
+		SET DEL_YN 		     = (CASE WHEN VERSION_NUMBER > #{headVersionNumber} THEN 'Y' ELSE 'N' END)
+		   ,HEAD        	 = (CASE VERSION_NUMBER WHEN #{headVersionNumber} THEN 'Y' ELSE 'N' END)
+		   ,MOD_DATE 		 = #{modDate}
+		   ,MOD_USER_ID 	 = #{modUserId}
+		   ,MSG 			 = #{msg} || MSG
+		WHERE DATA_TYPE 	 = #{dataType}
+		  AND DATA_ID 		 = #{dataId}
+		]]>
+	</update>
+
+	<select id="getHeadVersionData" resultMap="versionDataMap">
+		SELECT *
+		FROM TVS0101
+		WHERE DATA_TYPE = #{dataType}
+		AND DATA_ID = #{dataId}
+		AND HEAD    = 'Y'
+	</select>
+
+	<select id="getVersionData" resultMap="versionDataMap">
+		SELECT *
+		  FROM TVS0101
+		 WHERE DATA_TYPE = #{dataType}
+		   AND DATA_ID   = #{dataId}
+		   AND VERSION   = #{version}
+		   <if test="includeDelYnNo">
+		   AND DEL_YN    = 'N'
+		   </if>
+	</select>
+
+	<select id="getVersionDataByVersionNumber" resultMap="versionDataMap">
+		SELECT *
+		FROM TVS0101
+		WHERE DATA_TYPE = #{dataType}
+		AND DATA_ID   = #{dataId}
+		AND VERSION_NUMBER   = #{versionNumber}
+		<if test="includeDelYnNo">
+		AND DEL_YN    = 'N'
+		</if>
+	</select>
+
+	<select id="getVersionDataList" parameterType="map" resultMap="versionDataMap">
+		SELECT *
+		  FROM TVS0101
+		 WHERE 1 = 1
+		<if test="dataType != null">
+		   AND DATA_TYPE = #{dataType}
+		</if>
+		<if test="dataId != null">
+		   AND DATA_ID = #{dataId}
+		</if>
+		<if test="commitDate != null">
+		   AND COMMIT_DATE = #{commitDate}
+		</if>
+		<if test="commitUserId != null">
+			AND COMMIT_USER_ID = #{commitUserId}
+		</if>
+		<if test="modDate != null">
+			AND MOD_DATE = #{modDate}
+		</if>
+		<if test="modUserId != null">
+			AND MOD_USER_ID = #{modUserId}
+		</if>
+		<if test="tag != null">
+			AND TAG like '%'||#{tag}||'%'
+		</if>
+		<if test="delYn != null">
+			AND DEL_YN = #{delYn}
+		</if>
+		<if test="includeDelYnNo">
+		   AND DEL_YN = 'N'
+		</if>
+	  ORDER BY VERSION_NUMBER DESC
+	</select>
+
+
+	<resultMap id="versionDataMap" type="pep.per.mint.common.data.basic.version.VersionData">
+		<id property = "dataType"			column = "DATA_TYPE"/>
+		<id property = "dataId"				column = "DATA_ID"/>
+		<id property = "version"			column = "VERSION"/>
+		<result property = "isHead"			column = "HEAD" typeHandler = "pep.per.mint.database.mybatis.handler.StringYnTypeHandler"/>
+		<result property = "versionNumber"	column = "VERSION_NUMBER"/>
+		<result property = "commitDate"		column = "COMMIT_DATE"/>
+		<result property = "commitUserId"	column = "COMMIT_USER_ID"/>
+		<result property = "msg"			column = "MSG" jdbcType = "CLOB"/>
+		<result property = "contents"		column = "CONTENTS" jdbcType = "BLOB" typeHandler="org.apache.ibatis.type.BlobTypeHandler"/>
+		<result property = "size"			column = "CONTENTS_SIZE"/>
+		<result property = "tag"			column = "TAG"/>
+		<result property = "delYn"			column = "DEL_YN"/>
+		<result property = "modDate"		column = "MOD_DATE"/>
+		<result property = "modUserId"		column = "MOD_USER_ID"/>
+	</resultMap>
+
+
+
+</mapper>

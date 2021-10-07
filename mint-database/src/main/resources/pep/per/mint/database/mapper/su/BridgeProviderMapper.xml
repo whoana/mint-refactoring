@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="pep.per.mint.database.mapper.su.BridgeProviderMapper">
+  	<!--
+  	<cache/>
+  	-->
+
+
+  	<!--
+  	  * 2021.06.10 신한생명 요구사항 변경으로 삭제 예정
+  	-->
+	<select id="getInterfaces-OLD" resultType="Map">
+		SELECT DISTINCT
+			 c.BUSINESS_CD	   	as "DOMAIN"
+			,f.INTEGRATION_ID	as "MODEL"
+			,TO_CHAR(h.VAL)     as "DESCRIPTION"
+			,im04.NM            as "DATASOURCE"
+		 FROM TRT0101 a
+		INNER JOIN TAN0101 b
+		   ON a.INTERFACE_ID = b.INTERFACE_ID
+		  AND a.DEL_YN = 'N'
+		  AND b.DEL_YN = 'N'
+		INNER JOIN TIM0301 c
+		   ON c.BUSINESS_ID = b.BUSINESS_ID
+		  AND c.BUSINESS_CD = #{businessCd}
+		INNER JOIN TAN0213 d
+		   ON d.INTERFACE_ID = b.INTERFACE_ID
+		  AND d.NODE_TYPE = '0'
+		  AND d.SEQ = (SELECT min(SEQ) FROM TAN0213 WHERE INTERFACE_ID = d.INTERFACE_ID AND NODE_TYPE = '0')
+		  AND d.DEL_YN = 'N'
+		INNER JOIN TIM0101 e
+		   ON e.SYSTEM_ID = d.SYSTEM_ID
+		  AND e.SYSTEM_CD = #{systemCd}
+		INNER JOIN TAN0201 f
+		   ON f.INTERFACE_ID = a.INTERFACE_ID
+		INNER JOIN TRT0201 g
+		   ON g.INTERFACE_MID = a.INTERFACE_MID
+		  AND g.SYSTEM_TYPE = '2'
+		  AND g.SEQ = (SELECT min(SEQ) FROM TRT0201 WHERE INTERFACE_MID = a.INTERFACE_MID AND SYSTEM_TYPE = '2')
+		INNER JOIN TRT0202 h
+		   ON h.INTERFACE_MID = a.INTERFACE_MID
+		  AND h.APP_MID = g.APP_MID
+		INNER JOIN TRT0203 i
+		   ON i.AID = h.AID
+		  AND i.APP_TYPE = h.APP_TYPE
+		  AND i.CD = 'serviceId'
+		  AND i.DEL_YN = 'N'
+		INNER JOIN TRT0207 j
+		   ON j.APP_TYPE = i.APP_TYPE
+		INNER JOIN TSU0301 im04
+		   ON im04.CD = j.RSS_CD
+		  AND im04.LEVEL1 = 'IM'
+		  AND im04.LEVEL2 = '04'
+		<if test="channelCd != null">
+		INNER JOIN TIM0002 k
+		   ON k.CHANNEL_ID 	= f.CHANNEL_ID
+		  AND k.CHANNEL_CD 	= #{channelCd}
+		</if>
+
+	</select>
+
+  	<!--
+  	  * 2021.06.10 신한생명 요구사항 변경으로 추가
+  	  * [변경내용]
+  	  *  - 시스템 조회조건 삭제
+  	-->
+	<select id="getInterfaces" resultType="Map">
+		SELECT
+			DISTINCT
+			C.BUSINESS_CD       AS "DOMAIN"
+			,F.INTEGRATION_ID   AS "MODEL"
+			,TO_CHAR(H.VAL)     AS "DESCRIPTION"
+			,IM04.NM            AS "DATASOURCE"
+			,K.CHANNEL_CD       AS "CHANNEL_CD"
+			,K.CHANNEL_NM       AS "CHANNEL_NM"
+		FROM
+			TRT0101 A
+			INNER JOIN TAN0101 B ON
+				A.INTERFACE_ID = B.INTERFACE_ID
+				AND A.DEL_YN = 'N'
+				AND B.DEL_YN = 'N'
+			INNER JOIN TIM0301 C ON
+				C.BUSINESS_ID = B.BUSINESS_ID
+				AND C.BUSINESS_CD = #{businessCd}
+			INNER JOIN TAN0201 F ON
+				F.INTERFACE_ID = A.INTERFACE_ID
+			INNER JOIN TRT0201 G ON
+				G.INTERFACE_MID = A.INTERFACE_MID
+				AND G.SYSTEM_TYPE = '2'
+				AND G.SEQ = (SELECT MIN(SEQ) FROM TRT0201 WHERE INTERFACE_MID = A.INTERFACE_MID AND SYSTEM_TYPE = '2')
+			INNER JOIN TIM0101 E ON
+				E.SYSTEM_ID = G.SYSTEM_ID
+			INNER JOIN TRT0202 H ON
+				H.INTERFACE_MID = A.INTERFACE_MID
+				AND H.APP_MID = G.APP_MID
+			INNER JOIN TRT0203 I ON
+				I.AID = H.AID
+				AND I.APP_TYPE = H.APP_TYPE
+				AND I.CD = 'serviceId'
+				AND I.DEL_YN = 'N'
+			INNER JOIN TRT0207 J ON
+				J.APP_TYPE = I.APP_TYPE
+			INNER JOIN TSU0301 IM04 ON
+				IM04.CD = J.RSS_CD
+				AND IM04.LEVEL1 = 'IM'
+				AND IM04.LEVEL2 = '04'
+			<if test="channelCd != null">
+			INNER JOIN TIM0002 K ON
+				K.CHANNEL_ID = F.CHANNEL_ID
+				AND K.CHANNEL_CD = #{channelCd}
+			</if>
+	</select>
+
+
+
+ 	<select id="getInterfaceId" resultType="String">
+		SELECT INTERFACE_ID
+	      FROM TAN0201 a
+	     WHERE a.INTEGRATION_ID = #{integrationId}
+ 	</select>
+
+</mapper>

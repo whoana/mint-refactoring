@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="pep.per.mint.database.mapper.co.ServerFilteringMapper">
+	<!--
+      <cache/>
+      -->
+ 	<select id="getDataSetNameList" resultMap="dataSetNameResult">
+	 	SELECT
+	 		DATASET_ID, NM1, NM2, CD
+	 	FROM
+			(
+				SELECT
+					DISTINCT
+					DATASET_ID,
+					NM1,
+					NM2,
+					CD
+				FROM TAN0501
+				WHERE
+					1 = 1
+					AND DEL_YN = 'N'
+					<if test="isRoot!=null">
+					AND IS_ROOT = #{isRoot}
+					</if>
+					<if test="nm1!=null and nm1!=''">
+					AND (NM1 LIKE '%'||#{nm1}||'%')
+					</if>
+					<if test="nm2!=null and nm2!=''">
+					AND (NM2 LIKE '%'||#{nm2}||'%')
+					</if>
+					<if test="cd!=null and cd!=''">
+					AND (CD LIKE '%'||#{cd}||'%')
+					</if>
+
+				<choose>
+				<when test="nm1 != null and nm1 != '' ">
+				ORDER BY NM1
+				</when>
+				<when test="nm2 != null and nm2 != '' ">
+				ORDER BY NM2
+				</when>
+				<when test="cd != null and cd != '' ">
+				ORDER BY CD
+				</when>
+				<otherwise>
+				ORDER BY DATASET_ID
+				</otherwise>
+				</choose>
+			)
+		WHERE
+			ROWNUM <![CDATA[<]]>= #{perCount}
+ 	</select>
+
+	<resultMap id="dataSetNameResult" type="java.util.LinkedHashMap">
+		<id property="id"		column="DATASET_ID"/>
+		<result property="nm1"	column="NM1"/>
+		<result property="nm2"	column="NM2"/>
+		<result property="cd"	column="CD"/>
+	</resultMap>
+
+
+
+ 	<select id="getDataMapNameList" resultMap="dataMapNameResult">
+		SELECT
+			MAP_ID, NM, CD
+		FROM
+			(
+				SELECT
+					DISTINCT MAP_ID, NM, CD
+				FROM TAN0503
+				WHERE
+					1 = 1
+					AND DEL_YN = 'N'
+					<if test="nm!=null and nm!=''">
+					AND (NM LIKE '%'||#{nm}||'%')
+					</if>
+					<if test="cd!=null and cd!=''">
+					AND (CD LIKE '%'||#{cd}||'%')
+					</if>
+				<choose>
+				<when test="nm != null and nm != '' ">
+				ORDER BY NM
+				</when>
+				<when test="cd != null and cd != '' ">
+				ORDER BY CD
+				</when>
+				<otherwise>
+				ORDER BY MAP_ID
+				</otherwise>
+				</choose>
+
+			)
+		WHERE
+			ROWNUM <![CDATA[<]]>= #{perCount}
+ 	</select>
+
+	<resultMap id="dataMapNameResult" type="java.util.LinkedHashMap">
+		<id property="id"		column="MAP_ID"/>
+		<result property="nm"	column="NM"/>
+		<result property="cd"	column="CD"/>
+	</resultMap>
+
+ 	<select id="getDataMapSrcDataSetNm1" resultMap="dataSetNameResult">
+		SELECT
+			DATASET_ID, NM1, NM2, CD
+		FROM
+			(
+				SELECT
+					DISTINCT
+					TAN0501.DATASET_ID,
+					TAN0501.NM1,
+					TAN0501.NM2,
+					TAN0501.CD
+				FROM
+					TAN0503
+					INNER JOIN TAN0501 ON
+						TAN0501.DATASET_ID = TAN0503.SRC_DATASET_ID
+				WHERE
+					1 = 1
+					AND TAN0501.DEL_YN = 'N'
+					AND TAN0503.DEL_YN = 'N'
+					AND TAN0501.NM1 LIKE '%'||#{nm1}||'%'
+				ORDER BY TAN0501.NM1
+			)
+		WHERE
+			ROWNUM <![CDATA[<]]>= #{perCount}
+ 	</select>
+
+ 	<select id="getDataMapTagDataSetNm1" resultMap="dataSetNameResult">
+		SELECT
+			DATASET_ID, NM1, NM2, CD
+		FROM
+			(
+				SELECT
+					DISTINCT
+					TAN0501.DATASET_ID,
+					TAN0501.NM1,
+					TAN0501.NM2,
+					TAN0501.CD
+				FROM
+					TAN0503
+					INNER JOIN TAN0501 ON
+						TAN0501.DATASET_ID = TAN0503.TAG_DATASET_ID
+				WHERE
+					1 = 1
+					AND TAN0501.DEL_YN = 'N'
+					AND TAN0503.DEL_YN = 'N'
+					AND TAN0501.NM1 LIKE '%'||#{nm1}||'%'
+				ORDER BY TAN0501.NM1
+			)
+		WHERE
+			ROWNUM <![CDATA[<]]>= #{perCount}
+ 	</select>
+
+</mapper>

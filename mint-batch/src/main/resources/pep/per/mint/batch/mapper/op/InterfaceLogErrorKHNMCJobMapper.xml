@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="pep.per.mint.batch.mapper.op.InterfaceLogErrorKHNMCJobMapper">
+  	<!--
+  	<cache/>
+  	-->
+	<select id="selectErrorTrLog" resultMap="TrLogMap">
+	<![CDATA[
+		SELECT
+			B.INTF_ID AS INTF_ID, COUNT(B.INTF_ID) AS ERROR_CNT
+		FROM MASTERLOG A
+		INNER JOIN MASTERLOG_ID_MAP B
+		ON A.MASTERLOG_ID = B.MASTERLOG_ID
+		WHERE 1=1
+		AND (A.MSG_DATETIME > #{fromDate}  AND A.MSG_DATETIME <= #{toDate} )
+		AND A.MSG_STATUS='99'
+		GROUP BY B.INTF_ID
+	]]>
+	</select>
+
+	<resultMap type="java.util.HashMap" id="TrLogMap">
+		<result javaType="java.lang.String" column="INTF_ID" property="intfId" />
+		<result javaType="java.lang.Integer" column="ERROR_CNT" property="errCnt" />
+	</resultMap>
+
+	<select id="selectSendUser" resultMap="SendUserMap">
+	<![CDATA[
+		SELECT
+		    DISTINCT
+		    TSU0101.USER_NM AS USER_NM,
+		    TSU0101.CELL_PHONE AS CELL_PHONE
+		FROM TSU0101 TSU0101
+		INNER JOIN TSU0219 TSU0219
+		ON TSU0101.USER_ID = TSU0219.USER_ID
+		INNER JOIN TSU0220 TSU0220
+		ON TSU0220.ROLE_ID = TSU0219.ROLE_ID
+		INNER JOIN TAN0201 TAN0201
+		ON TAN0201.INTERFACE_ID = TSU0220.INTERFACE_ID
+		AND TAN0201.INTEGRATION_ID = #{intfId}
+		WHERE TSU0101.DEL_YN = 'N'
+	]]>
+	</select>
+
+	<resultMap type="java.util.HashMap" id="SendUserMap">
+		<result javaType="java.lang.String" column="CELL_PHONE" property="hpNum" />
+		<result javaType="java.lang.String" column="USER_NM" property="userNm" />
+	</resultMap>
+
+
+ 	<insert id="insertInterfaceErrLogSms">
+
+		insert into TOP0904 (
+			 SMS_ID
+			,TYPE
+			,SUBJECT
+			,CONTENTS
+			,SENDER
+			,RECIPIENTS
+			,RETRY
+			,FORMAT
+			,SND_REQ_DATE
+			,SND_YN
+			,RES_DATE
+			,RES_CD
+			,RES_MSG
+			,REG_DATE
+			,REG_USER
+			,DEL_YN
+		) values (
+			 #{smsId, 	jdbcType=VARCHAR}
+			,#{type, 		jdbcType=VARCHAR}
+			,#{subject, 	jdbcType=VARCHAR}
+			,#{contents, 	jdbcType=VARCHAR}
+			,#{sender, 		jdbcType=VARCHAR}
+			,#{recipients, 	jdbcType=VARCHAR}
+			,#{retry, 		jdbcType=NUMERIC}
+			,#{format, 		jdbcType=VARCHAR}
+			,#{sndReqDate, 	jdbcType=VARCHAR}
+			,#{sndYn, 		jdbcType=VARCHAR}
+			,#{resDate, 	jdbcType=VARCHAR}
+			,#{resCd, 		jdbcType=VARCHAR}
+			,#{resMsg, 		jdbcType=VARCHAR}
+			,#{regDate, 	jdbcType=VARCHAR}
+			,#{regId, 		jdbcType=VARCHAR}
+			,#{delYn, 		jdbcType=VARCHAR}
+		)
+	</insert>
+
+</mapper>

@@ -1,0 +1,121 @@
+-- 1.DDL : 통합권한정책(TAU0104),통합권한등록정책(TAU0105) PK 변경  
+			
+			/* 통합권한정책 */
+			CREATE TABLE TAU0104 (
+				CATEGORY_ID VARCHAR(50) NOT NULL, /* 카테고리ID */
+				CD VARCHAR(255) NOT NULL, /* 정책코드 */
+				NM VARCHAR(255) NOT NULL, /* 이름 */
+				SEQ INTEGER DEFAULT 0 NOT NULL, /* 순서 */
+				OPERATOR VARCHAR(5) DEFAULT '0', /* 연산자 */
+				COMMENTS VARCHAR(1000), /* 설명 */
+				DEL_YN VARCHAR(1) DEFAULT 'N' NOT NULL, /* 삭제구분 */
+				REG_DATE VARCHAR(17) NOT NULL, /* 등록일 */
+				REG_USER VARCHAR(100) NOT NULL, /* 등록자 */
+				MOD_DATE VARCHAR(17), /* 최종수정일 */
+				MOD_USER VARCHAR(100) /* 최종수정자 */
+			);
+			
+			COMMENT ON TABLE TAU0104 IS '통합권한정책';
+			
+			COMMENT ON COLUMN TAU0104.CATEGORY_ID IS '카테고리ID';
+			
+			COMMENT ON COLUMN TAU0104.CD IS '정책코드';
+			
+			COMMENT ON COLUMN TAU0104.NM IS '이름';
+			
+			COMMENT ON COLUMN TAU0104.SEQ IS '순서';
+			
+			COMMENT ON COLUMN TAU0104.OPERATOR IS '연산자';
+			
+			COMMENT ON COLUMN TAU0104.COMMENTS IS '설명';
+			
+			COMMENT ON COLUMN TAU0104.DEL_YN IS '삭제구분';
+			
+			COMMENT ON COLUMN TAU0104.REG_DATE IS '등록일';
+			
+			COMMENT ON COLUMN TAU0104.REG_USER IS '등록자';
+			
+			COMMENT ON COLUMN TAU0104.MOD_DATE IS '최종수정일';
+			
+			COMMENT ON COLUMN TAU0104.MOD_USER IS '최종수정자';
+			
+			CREATE UNIQUE INDEX PK_TAU0104
+				ON TAU0104 (
+					CATEGORY_ID ASC,
+					CD ASC
+				);
+			
+			/* 통합권한등록정책 */
+			CREATE TABLE TAU0105 (
+				CATEGORY_ID VARCHAR(50) NOT NULL, /* 카테고리ID */
+				OWNER_TYPE VARCHAR(5) NOT NULL, /* 권한오너유형 */
+				DATA_TYPE VARCHAR(5) NOT NULL, /* 오브젝트유형 */
+				ITEM_TYPE VARCHAR(5) NOT NULL, /* 권한아이템유형 */
+				NM VARCHAR(255) NOT NULL, /* 이름 */
+				SEQ INTEGER NOT NULL, /* 순서 */
+				COMMENTS VARCHAR(1000), /* 설명 */
+				DEL_YN VARCHAR(1) DEFAULT 'N' NOT NULL, /* 삭제구분 */
+				REG_DATE VARCHAR(17) NOT NULL, /* 등록일 */
+				REG_USER VARCHAR(100) NOT NULL, /* 등록자 */
+				MOD_DATE VARCHAR(17), /* 최종수정일 */
+				MOD_USER VARCHAR(100) /* 최종수정자 */
+			);
+			
+			COMMENT ON TABLE TAU0105 IS '통합권한등록정책';
+			
+			COMMENT ON COLUMN TAU0105.CATEGORY_ID IS '카테고리ID';
+			
+			COMMENT ON COLUMN TAU0105.OWNER_TYPE IS '권한오너유형';
+			
+			COMMENT ON COLUMN TAU0105.DATA_TYPE IS '오브젝트유형';
+			
+			COMMENT ON COLUMN TAU0105.ITEM_TYPE IS '권한아이템유형';
+			
+			COMMENT ON COLUMN TAU0105.NM IS '이름';
+			
+			COMMENT ON COLUMN TAU0105.SEQ IS '순서';
+			
+			COMMENT ON COLUMN TAU0105.COMMENTS IS '설명';
+			
+			COMMENT ON COLUMN TAU0105.DEL_YN IS '삭제구분';
+			
+			COMMENT ON COLUMN TAU0105.REG_DATE IS '등록일';
+			
+			COMMENT ON COLUMN TAU0105.REG_USER IS '등록자';
+			
+			COMMENT ON COLUMN TAU0105.MOD_DATE IS '최종수정일';
+			
+			COMMENT ON COLUMN TAU0105.MOD_USER IS '최종수정자';
+			
+			CREATE UNIQUE INDEX PK_TAU0105
+				ON TAU0105 (
+					CATEGORY_ID ASC,
+					OWNER_TYPE ASC,
+					DATA_TYPE ASC,
+					ITEM_TYPE ASC
+				);
+
+-- 2.DATA 등록 : 통합권한정책(TAU0104),통합권한등록정책(TAU0105)
+
+			-- 권한(확인)정책 등록
+			INSERT INTO TAU0104 (CATEGORY_ID, CD, SEQ, NM, OPERATOR, COMMENTS, DEL_YN, REG_DATE, REG_USER) VALUES('1', 'SUPER', 0, '데이터권한 슈퍼권한 적용'    , '0', '데이터권한 슈퍼권한 적용'    , 'N' , 'superman', to_char(sysdate, 'yyyymmddHH24MISS'));
+			INSERT INTO TAU0104 (CATEGORY_ID, CD, SEQ, NM, OPERATOR, COMMENTS, DEL_YN, REG_DATE, REG_USER) VALUES('1', 'OWNER', 1, '데이터권한 소유자 적용'      , '0', '데이터권한 소유자 적용'     , 'N', 'superman', to_char(sysdate, 'yyyymmddHH24MISS'));
+			INSERT INTO TAU0104 (CATEGORY_ID, CD, SEQ, NM, OPERATOR, COMMENTS, DEL_YN, REG_DATE, REG_USER) VALUES('1', 'USER' , 2, '데이터권한 사용자별정책 적용'  , '0', '데이터권한 사용자별정책 적용' , 'N', 'superman', to_char(sysdate, 'yyyymmddHH24MISS'));
+			INSERT INTO TAU0104 (CATEGORY_ID, CD, SEQ, NM, OPERATOR, COMMENTS, DEL_YN, REG_DATE, REG_USER) VALUES('1', 'GROUP', 3, '데이터권한 그룹별정책 적용'   , '0', '데이터권한 그룹별정책 적용'  , 'N' , 'superman', to_char(sysdate, 'yyyymmddHH24MISS'));
+			
+			-- 권한등록정책 등록
+			INSERT INTO TAU0105 (CATEGORY_ID, OWNER_TYPE, DATA_TYPE, ITEM_TYPE, NM, SEQ, COMMENTS, DEL_YN, REG_DATE, REG_USER) VALUES('1','0', '1', '2','권한등록정책[USER_INTERFACE_UPDATE]' ,  1, '권한등록정책[USER_INTERFACE_UPDATE]' , 'N' , 'superman', to_char(sysdate, 'yyyymmddHH24MISS'));
+			INSERT INTO TAU0105 (CATEGORY_ID, OWNER_TYPE, DATA_TYPE, ITEM_TYPE, NM, SEQ, COMMENTS, DEL_YN, REG_DATE, REG_USER) VALUES('1','0', '1', '3','권한등록정책[USER_INTERFACE_DELETE]' ,  2, '권한등록정책[USER_INTERFACE_DELETE]' , 'N' , 'superman', to_char(sysdate, 'yyyymmddHH24MISS'));
+			INSERT INTO TAU0105 (CATEGORY_ID, OWNER_TYPE, DATA_TYPE, ITEM_TYPE, NM, SEQ, COMMENTS, DEL_YN, REG_DATE, REG_USER) VALUES('1','0', '1', '6','권한등록정책[USER_INTERFACE_DEPLOY]' ,  3, '권한등록정책[USER_INTERFACE_DEPLOY]' , 'N' , 'superman', to_char(sysdate, 'yyyymmddHH24MISS'));
+			INSERT INTO TAU0105 (CATEGORY_ID, OWNER_TYPE, DATA_TYPE, ITEM_TYPE, NM, SEQ, COMMENTS, DEL_YN, REG_DATE, REG_USER) VALUES('1','0', '2', '2','권한등록정책[USER_DATASET_UPDATE]'   ,  1, '권한등록정책[USER_DATASET_UPDATE]'   , 'N' , 'superman', to_char(sysdate, 'yyyymmddHH24MISS'));
+			INSERT INTO TAU0105 (CATEGORY_ID, OWNER_TYPE, DATA_TYPE, ITEM_TYPE, NM, SEQ, COMMENTS, DEL_YN, REG_DATE, REG_USER) VALUES('1','0', '2', '3','권한등록정책[USER_DATASET_DELETE]'   ,  2, '권한등록정책[USER_DATASET_DELETE]'   , 'N' , 'superman', to_char(sysdate, 'yyyymmddHH24MISS'));
+			INSERT INTO TAU0105 (CATEGORY_ID, OWNER_TYPE, DATA_TYPE, ITEM_TYPE, NM, SEQ, COMMENTS, DEL_YN, REG_DATE, REG_USER) VALUES('1','0', '3', '2','권한등록정책[USER_DATAMAP_UPDATE]'   ,  1, '권한등록정책[USER_DATAMAP_UPDATE]'   , 'N' , 'superman', to_char(sysdate, 'yyyymmddHH24MISS'));
+			INSERT INTO TAU0105 (CATEGORY_ID, OWNER_TYPE, DATA_TYPE, ITEM_TYPE, NM, SEQ, COMMENTS, DEL_YN, REG_DATE, REG_USER) VALUES('1','0', '3', '3','권한등록정책[USER_DATAMAP_DELETE]'   ,  2, '권한등록정책[USER_DATAMAP_DELETE]'   , 'N' , 'superman', to_char(sysdate, 'yyyymmddHH24MISS'));
+			INSERT INTO TAU0105 (CATEGORY_ID, OWNER_TYPE, DATA_TYPE, ITEM_TYPE, NM, SEQ, COMMENTS, DEL_YN, REG_DATE, REG_USER) VALUES('1','1', '1', '2','권한등록정책[GROUP_INTERFACE_UPDATE]',  1, '권한등록정책[GROUP_INTERFACE_UPDATE]', 'N' , 'superman', to_char(sysdate, 'yyyymmddHH24MISS'));
+			INSERT INTO TAU0105 (CATEGORY_ID, OWNER_TYPE, DATA_TYPE, ITEM_TYPE, NM, SEQ, COMMENTS, DEL_YN, REG_DATE, REG_USER) VALUES('1','1', '1', '3','권한등록정책[GROUP_INTERFACE_DELETE]',  2, '권한등록정책[GROUP_INTERFACE_DELETE]', 'N' , 'superman', to_char(sysdate, 'yyyymmddHH24MISS'));
+			INSERT INTO TAU0105 (CATEGORY_ID, OWNER_TYPE, DATA_TYPE, ITEM_TYPE, NM, SEQ, COMMENTS, DEL_YN, REG_DATE, REG_USER) VALUES('1','1', '2', '2','권한등록정책[GROUP_DATASET_UPDATE]'  ,  1, '권한등록정책[GROUP_DATASET_UPDATE]'  , 'N' , 'superman', to_char(sysdate, 'yyyymmddHH24MISS'));
+			INSERT INTO TAU0105 (CATEGORY_ID, OWNER_TYPE, DATA_TYPE, ITEM_TYPE, NM, SEQ, COMMENTS, DEL_YN, REG_DATE, REG_USER) VALUES('1','1', '2', '3','권한등록정책[GROUP_DATASET_DELETE]'  ,  2, '권한등록정책[GROUP_DATASET_DELETE]'  , 'N' , 'superman', to_char(sysdate, 'yyyymmddHH24MISS'));
+			INSERT INTO TAU0105 (CATEGORY_ID, OWNER_TYPE, DATA_TYPE, ITEM_TYPE, NM, SEQ, COMMENTS, DEL_YN, REG_DATE, REG_USER) VALUES('1','1', '3', '2','권한등록정책[GROUP_DATAMAP_UPDATE]'  ,  1, '권한등록정책[GROUP_DATAMAP_UPDATE]'  , 'N' , 'superman', to_char(sysdate, 'yyyymmddHH24MISS'));
+			INSERT INTO TAU0105 (CATEGORY_ID, OWNER_TYPE, DATA_TYPE, ITEM_TYPE, NM, SEQ, COMMENTS, DEL_YN, REG_DATE, REG_USER) VALUES('1','1', '3', '3','권한등록정책[GROUP_DATAMAP_DELETE]'  ,  2, '권한등록정책[GROUP_DATAMAP_DELETE]'  , 'N' , 'superman', to_char(sysdate, 'yyyymmddHH24MISS'));
+
+	

@@ -1,0 +1,791 @@
+{
+	"info": {
+		"_postman_id": "b60dfc46-d5da-414a-8e13-521cdbeb123e",
+		"name": "openapi",
+		"description": "endpoint 개발",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "findUser",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"objectType\": \"ComMessage\",\n  \"requestObject\":{\"userId\":\"iip\"},\n  \"startTime\": \"20190416105001001\",\n  \"endTime\": null,\n  \"errorCd\":\"0\",\n  \"errorMsg\":\"\",\n  \"userId\": \"iip\",\n  \"appId\": \"\",\n  \"checkSession\":false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/mint/openapi/models/users/iip?method=GET",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"mint",
+						"openapi",
+						"models",
+						"users",
+						"iip"
+					],
+					"query": [
+						{
+							"key": "method",
+							"value": "GET"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "findInterface",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"objectType\": \"ComMessage\",\n  \"requestObject\":{\"serviceId\":\"OPENAPI-SERVICE-020\", \"channelCd\":\"FWS\", \"businessCd\":\"NCM\"},\n  \"startTime\": \"20190416105001001\",\n  \"endTime\": null,\n  \"errorCd\":\"0\",\n  \"errorMsg\":\"\",\n  \"userId\": \"iip\",\n  \"appId\": \"\",\n  \"checkSession\":false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/mint/openapi/models/interfaces?method=GET",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"mint",
+						"openapi",
+						"models",
+						"interfaces"
+					],
+					"query": [
+						{
+							"key": "method",
+							"value": "GET"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "findInterfaceId",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"objectType\": \"ComMessage\",\n  \"requestObject\":{\"serviceId\":\"OPENAPI-SERVICE-020\", \"channelCd\":\"FWS\", \"businessCd\":\"NCM\"},\n  \"startTime\": \"20190416105001001\",\n  \"endTime\": null,\n  \"errorCd\":\"0\",\n  \"errorMsg\":\"\",\n  \"userId\": \"iip\",\n  \"appId\": \"\",\n  \"checkSession\":false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/mint/openapi/models/interfaces/id?method=GET",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"mint",
+						"openapi",
+						"models",
+						"interfaces",
+						"id"
+					],
+					"query": [
+						{
+							"key": "method",
+							"value": "GET"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "findDataSet",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"objectType\": \"ComMessage\",\n  \"requestObject\":{\"serviceId\":\"OPENAPI-SERVICE-020\", \"channelCd\":\"FWS\", \"businessCd\":\"NCM\"},\n  \"startTime\": \"20190416105001001\",\n  \"endTime\": null,\n  \"errorCd\":\"0\",\n  \"errorMsg\":\"\",\n  \"userId\": \"iip\",\n  \"appId\": \"\",\n  \"checkSession\":false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/mint/openapi/models/datasets/ONNBZ1999_I?method=GET",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"mint",
+						"openapi",
+						"models",
+						"datasets",
+						"ONNBZ1999_I"
+					],
+					"query": [
+						{
+							"key": "method",
+							"value": "GET"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createDataSet",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"objectType\": \"ComMessage\",\n  \"requestObject\":{\n        \"objectType\": \"DataSet\",\n        \"dataSetId\": \"\",\n        \"name1\": \"동물정보\",\n        \"name2\": \"annimalInfo\",\n        \"cd\": \"ANNI1000_I\",\n        \"dataFormat\": \"3\",\n        \"dataFormatNm\": \"fixedlength\",\n        \"encryptType\": \"N\",\n        \"encryptTypeNm\": \"\",\n        \"length\": 13,\n        \"isStandard\": \"Y\",\n        \"use\": \"Y\",\n        \"isMapped\": \"N\",\n        \"isRoot\": \"Y\",\n        \"recordDelimiter\": \"\\n\",\n        \"fieldDelimiter\": \",\",\n        \"dataFieldList\": [\n            {\n                \"objectType\": \"DataField\",\n                \"objectType\": \"DataField\",\n                \"id\": \"1\",\n                \"parentId\": null,\n                \"dataSetId\": \"\",\n                \"dataFieldId\": \"1\",\n                \"seq\": 1,\n                \"name1\": \"성명\",\n                \"name2\": \"name\",\n                \"cd\": \"name\",\n                \"type\": \"0\",\n                \"typeNm\": \"string\",\n                \"offset\": 0,\n                \"length\": 10,\n                \"encryptType\": \"\",\n                \"encryptTypeNm\": \"\",\n                \"isLengthField\": \"N\",\n                \"repeatCount\": 0,\n                \"hasRepeatCountField\": \"N\",\n                \"repeatFieldId\": \"\",\n                \"repeatDataSetId\": \"\",\n                \"defaultValue\": \"default\",\n                \"justify\": \"L\",\n                \"justifyNm\": \"왼쪽정렬\",\n                \"padding\": \" \",\n                \"fieldSetId\": \"\",\n                \"parentNmKo\": \"\",\n                \"parentNmEn\": \"\",\n                \"requiredYn\": \"Y\",\n                \"scale\": 0,\n                \"koreanYn\": \"Y\",\n                \"metaYn\": \"Y\",\n                \"decimalPointYn\": \"N\",\n                \"maskingYn\": \"N\",\n                \"maskingPatternCd\": \"\",\n                \"userKeyYn\": \"N\",\n                \"pk\": \"N\",\n                \"comments\": \"고객명\",\n                \"refDataSetId\": \"\",\n                \"refDataFieldId\": \"\",\n                \"delYn\": \"N\",\n                \"regDate\": \"20210422091550838\",\n                \"regId\": \"\",\n                \"modDate\": \"\",\n                \"modId\": \"\",\n                \"valid\": false\n            },\n            {\n                \"objectType\": \"DataField\",\n                \"objectType\": \"DataField\",\n                \"id\": \"2\",\n                \"parentId\": null,\n                \"dataSetId\": \"\",\n                \"dataFieldId\": \"2\",\n                \"seq\": 2,\n                \"name1\": \"나이\",\n                \"name2\": \"age\",\n                \"cd\": \"age\",\n                \"type\": \"0\",\n                \"typeNm\": \"string\",\n                \"offset\": 10,\n                \"length\": 3,\n                \"encryptType\": \"\",\n                \"encryptTypeNm\": \"\",\n                \"isLengthField\": \"N\",\n                \"repeatCount\": 0,\n                \"hasRepeatCountField\": \"N\",\n                \"repeatFieldId\": \"\",\n                \"repeatDataSetId\": \"\",\n                \"defaultValue\": \"000\",\n                \"justify\": \"R\",\n                \"justifyNm\": \"오른쪽정렬\",\n                \"padding\": \"0\",\n                \"fieldSetId\": \"\",\n                \"parentNmKo\": \"\",\n                \"parentNmEn\": \"\",\n                \"requiredYn\": \"Y\",\n                \"scale\": 0,\n                \"koreanYn\": \"Y\",\n                \"metaYn\": \"Y\",\n                \"decimalPointYn\": \"N\",\n                \"maskingYn\": \"N\",\n                \"maskingPatternCd\": \"\",\n                \"userKeyYn\": \"N\",\n                \"pk\": \"N\",\n                \"comments\": \"고객나이(문자)\",\n                \"refDataSetId\": \"\",\n                \"refDataFieldId\": \"\",\n                \"delYn\": \"N\",\n                \"regDate\": \"20210422091550839\",\n                \"regId\": \"\",\n                \"modDate\": \"\",\n                \"modId\": \"\",\n                \"valid\": false\n            }\n        ],\n        \"complexTypeMap\": {},\n        \"comments\": \"\",\n        \"delYn\": \"N\",\n        \"regDate\": \"20210415154149978\",\n        \"regId\": \"shl\",\n        \"modDate\": \"20210420140430577\",\n        \"modId\": \"shl\",\n        \"regUser\": {\n            \"objectType\": \"User\",\n            \"objectType\": \"User\",\n            \"companyNm\": \"\",\n            \"departmentNm\": \"\",\n            \"positionNm\": \"\",\n            \"retired\": \"N\",\n            \"userId\": \"shl\",\n            \"password\": \"\",\n            \"userNm\": \"포털개발자\",\n            \"cellPhone\": \"\",\n            \"phone\": \"\",\n            \"email\": \"\",\n            \"role\": null,\n            \"delYn\": \"N\",\n            \"regDate\": \"\",\n            \"regId\": \"\",\n            \"modDate\": \"\",\n            \"modId\": \"\",\n            \"dataAccessRoleList\": null\n        },\n        \"modUser\": {\n            \"objectType\": \"User\",\n            \"objectType\": \"User\",\n            \"companyNm\": \"\",\n            \"departmentNm\": \"\",\n            \"positionNm\": \"\",\n            \"retired\": \"N\",\n            \"userId\": \"shl\",\n            \"password\": \"\",\n            \"userNm\": \"포털개발자\",\n            \"cellPhone\": \"\",\n            \"phone\": \"\",\n            \"email\": \"\",\n            \"role\": null,\n            \"delYn\": \"N\",\n            \"regDate\": \"\",\n            \"regId\": \"\",\n            \"modDate\": \"\",\n            \"modId\": \"\",\n            \"dataAccessRoleList\": null\n        }\n    },\n  \"startTime\": \"20190416105001001\",\n  \"endTime\": null,\n  \"errorCd\":\"0\",\n  \"errorMsg\":\"\",\n  \"userId\": \"iip\",\n  \"appId\": \"\",\n  \"checkSession\":false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/mint/openapi/models/datasets?method=POST",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"mint",
+						"openapi",
+						"models",
+						"datasets"
+					],
+					"query": [
+						{
+							"key": "method",
+							"value": "POST"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createRequirementModel",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"objectType\": \"ComMessage\",\n  \"requestObject\":{\n        \"objectType\": \"RequirementModel\",\n        \"requirement\": {\n            \"objectType\": \"Requirement\",\n            \"objectType\": \"Requirement\",\n            \"pageInfo\": null,\n            \"tester\": null,\n            \"developer\": null,\n            \"mover\": null,\n            \"requirementId\": \"\",\n            \"requirementNm\": \"서비스인터페이스021\",\n            \"status\": \"I0\",\n            \"statusNm\": \"이행완료\",\n            \"business\": {\n                \"objectType\": \"Business\",\n                \"objectType\": \"Business\",\n                \"childCnt\": 0,\n                \"businessId\": \"BZ00000018\",\n                \"businessNm\": \"계약관리(처리계)\",\n                \"businessCd\": \"NCM\",\n                \"seq\": 0,\n                \"grpYn\": \"N\",\n                \"rootYn\": \"N\",\n                \"nodeType\": \"\",\n                \"nodeTypeNm\": \"\",\n                \"parentBusiness\": null,\n                \"comments\": \"\",\n                \"delYn\": \"N\",\n                \"regDate\": \"\",\n                \"regId\": \"\",\n                \"modDate\": \"\",\n                \"modId\": \"\",\n                \"relUsers\": []\n            },\n            \"interface\": {\n                \"objectType\": \"Interface\",\n                \"objectType\": \"Interface\",\n                \"integrationId\": \"OPENAPI-SERVICE-021\",\n                \"channelChangeComments\": \"\",\n                \"channelChangeCd\": \"\",\n                \"channelChangeNm\": \"\",\n                \"dataFrequencyInput\": \"\",\n                \"interfaceId\": \"\",\n                \"interfaceNm\": \"서비스인터페이스021\",\n                \"channel\": {\n                    \"objectType\": \"Channel\",\n                    \"objectType\": \"Channel\",\n                    \"channelId\": \"CN00000002\",\n                    \"channelNm\": \"처리계FW\",\n                    \"channelCd\": \"\",\n                    \"externalYn\": \"N\",\n                    \"mapRule\": \"0\",\n                    \"comments\": \"\",\n                    \"delYn\": \"N\",\n                    \"regDate\": \"\",\n                    \"regId\": \"\",\n                    \"modDate\": \"\",\n                    \"modId\": \"\",\n                    \"relUsers\": [],\n                    \"relChlAttributes\": []\n                },\n                \"status\": \"\",\n                \"statusNm\": \"\",\n                \"importance\": \"\",\n                \"importanceNm\": \"\",\n                \"mapCd\": \"\",\n                \"interfaceMapping\": null,\n                \"maxDelayTime\": \"\",\n                \"maxErrorTime\": \"\",\n                \"maxDelayUnit\": \"\",\n                \"maxDelayUnitNm\": \"\",\n                \"maxErrorUnit\": \"\",\n                \"maxErrorUnitNm\": \"\",\n                \"refPattern\": null,\n                \"dataPrDir\": \"1\",\n                \"dataPrDirNm\": \"양방향\",\n                \"appPrMethod\": \"0\",\n                \"appPrMethodNm\": \"동기\",\n                \"dataPrMethod\": \"1\",\n                \"dataPrMethodNm\": \"Online\",\n                \"dataFrequency\": \"9\",\n                \"dataFrequencyNm\": \"수시\",\n                \"sizePerTran\": 0,\n                \"cntPerFrequency\": 0,\n                \"cntPerDay\": 0,\n                \"qttPerDay\": 0,\n                \"startResType\": \"\",\n                \"startResTypeNm\": \"\",\n                \"endResType\": \"\",\n                \"endResTypeNm\": \"\",\n                \"startNodeCnt\": 0,\n                \"endNodeCnt\": 0,\n                \"dataSeqYn\": \"N\",\n                \"delYn\": \"N\",\n                \"comments\": \"\",\n                \"regDate\": \"20210420140430577\",\n                \"regId\": \"shl\",\n                \"modDate\": \"20210420141114698\",\n                \"modId\": \"iip\",\n                \"systemList\": [\n                    {\n                        \"objectType\": \"System\",\n                        \"objectType\": \"System\",\n                        \"childCnt\": 0,\n                        \"systemId\": \"SS00000027\",\n                        \"systemNm\": \"처리계UI\",\n                        \"systemCd\": \"CUI\",\n                        \"parentSystem\": null,\n                        \"grpYn\": \"\",\n                        \"rootYn\": \"\",\n                        \"externalYn\": \"\",\n                        \"zoneInfo\": null,\n                        \"areaInput\": \"\",\n                        \"comments\": \"\",\n                        \"delYn\": \"N\",\n                        \"regDate\": \"\",\n                        \"regId\": \"\",\n                        \"modDate\": \"\",\n                        \"modId\": \"\",\n                        \"seq\": 0,\n                        \"nodeType\": \"0\",\n                        \"nodeTypeNm\": \"송신\",\n                        \"serverList\": [],\n                        \"relUsers\": [],\n                        \"service\": \"\",\n                        \"serviceDesc\": \"\",\n                        \"resourceCd\": \"5\",\n                        \"resourceNm\": \"NexaCro\"\n                    },\n                    {\n                        \"objectType\": \"System\",\n                        \"objectType\": \"System\",\n                        \"childCnt\": 0,\n                        \"systemId\": \"SS00000028\",\n                        \"systemNm\": \"계약관리(처리계)\",\n                        \"systemCd\": \"NCM\",\n                        \"parentSystem\": null,\n                        \"grpYn\": \"\",\n                        \"rootYn\": \"\",\n                        \"externalYn\": \"\",\n                        \"zoneInfo\": null,\n                        \"areaInput\": \"\",\n                        \"comments\": \"\",\n                        \"delYn\": \"N\",\n                        \"regDate\": \"\",\n                        \"regId\": \"\",\n                        \"modDate\": \"\",\n                        \"modId\": \"\",\n                        \"seq\": 1,\n                        \"nodeType\": \"2\",\n                        \"nodeTypeNm\": \"수신\",\n                        \"serverList\": [],\n                        \"relUsers\": [],\n                        \"service\": \"\",\n                        \"serviceDesc\": \"\",\n                        \"resourceCd\": \"4\",\n                        \"resourceNm\": \"Framework\"\n                    }\n                ],\n                \"businessList\": [\n                    {\n                        \"objectType\": \"Business\",\n                        \"objectType\": \"Business\",\n                        \"childCnt\": 0,\n                        \"businessId\": \"BZ00000018\",\n                        \"businessNm\": \"계약관리(처리계)\",\n                        \"businessCd\": \"NCM\",\n                        \"seq\": 1,\n                        \"grpYn\": \"N\",\n                        \"rootYn\": \"N\",\n                        \"nodeType\": \"2\",\n                        \"nodeTypeNm\": \"수신\",\n                        \"parentBusiness\": null,\n                        \"comments\": \"\",\n                        \"delYn\": \"N\",\n                        \"regDate\": \"\",\n                        \"regId\": \"\",\n                        \"modDate\": \"\",\n                        \"modId\": \"\",\n                        \"relUsers\": []\n                    },\n                    {\n                        \"objectType\": \"Business\",\n                        \"objectType\": \"Business\",\n                        \"childCnt\": 0,\n                        \"businessId\": \"BZ00000018\",\n                        \"businessNm\": \"계약관리(처리계)\",\n                        \"businessCd\": \"NCM\",\n                        \"seq\": 0,\n                        \"grpYn\": \"N\",\n                        \"rootYn\": \"N\",\n                        \"nodeType\": \"0\",\n                        \"nodeTypeNm\": \"송신\",\n                        \"parentBusiness\": null,\n                        \"comments\": \"\",\n                        \"delYn\": \"N\",\n                        \"regDate\": \"\",\n                        \"regId\": \"\",\n                        \"modDate\": \"\",\n                        \"modId\": \"\",\n                        \"relUsers\": []\n                    }\n                ],\n                \"senderSystemInfoList\": [],\n                \"receiverSystemInfoList\": [\n                    {\n                        \"objectType\": \"DisplaySystemInfo\",\n                        \"objectType\": \"DisplaySystemInfo\",\n                        \"seq\": 0,\n                        \"systemId\": \"SS00000027\",\n                        \"systemCd\": \"CUI\",\n                        \"systemNm\": \"처리계UI\",\n                        \"nodeType\": \"0\",\n                        \"nodeTypeNm\": \"송신\",\n                        \"service\": \"\",\n                        \"serviceDesc\": \"\",\n                        \"resourceCd\": \"5\",\n                        \"resourceNm\": \"NexaCro\",\n                        \"businessId\": \"BZ00000018\",\n                        \"businessCd\": \"NCM\",\n                        \"businessNm\": \"계약관리(처리계)\",\n                        \"orgId\": \"OR00000001\",\n                        \"orgCd\": \"SHL\",\n                        \"orgNm\": \"신한생명\"\n                    },\n                    {\n                        \"objectType\": \"DisplaySystemInfo\",\n                        \"objectType\": \"DisplaySystemInfo\",\n                        \"seq\": 1,\n                        \"systemId\": \"SS00000028\",\n                        \"systemCd\": \"NCM\",\n                        \"systemNm\": \"계약관리(처리계)\",\n                        \"nodeType\": \"2\",\n                        \"nodeTypeNm\": \"수신\",\n                        \"service\": \"\",\n                        \"serviceDesc\": \"\",\n                        \"resourceCd\": \"4\",\n                        \"resourceNm\": \"Framework\",\n                        \"businessId\": \"BZ00000018\",\n                        \"businessCd\": \"NCM\",\n                        \"businessNm\": \"계약관리(처리계)\",\n                        \"orgId\": \"OR00000001\",\n                        \"orgCd\": \"SHL\",\n                        \"orgNm\": \"신한생명\"\n                    }\n                ],\n                \"properties\": [],\n                \"relUsers\": [],\n                \"tagList\": [],\n                \"dataAccessRoleList\": [],\n                \"hasDataMap\": \"N\",\n                \"hasDataMapNm\": \"\"\n            },\n            \"devExpYmd\": \"20210427\",\n            \"devFinYmd\": \"\",\n            \"testExpYmd\": \"20210427\",\n            \"testFinYmd\": \"\",\n            \"realExpYmd\": \"20210427\",\n            \"realFinYmd\": \"\",\n            \"commentList\": [],\n            \"attatchFileList\": [],\n            \"comments\": \"OpenApi수정\",\n            \"regUser\": {\n                \"objectType\": \"User\",\n                \"objectType\": \"User\",\n                \"companyNm\": \"\",\n                \"departmentNm\": \"\",\n                \"positionNm\": \"\",\n                \"retired\": \"N\",\n                \"userId\": \"shl\",\n                \"password\": \"\",\n                \"userNm\": \"포털개발자\",\n                \"cellPhone\": \" \",\n                \"phone\": \" \",\n                \"email\": \" \",\n                \"role\": null,\n                \"delYn\": \"N\",\n                \"regDate\": \"\",\n                \"regId\": \"\",\n                \"modDate\": \"\",\n                \"modId\": \"\",\n                \"dataAccessRoleList\": null\n            },\n            \"modUser\": {\n                \"objectType\": \"User\",\n                \"objectType\": \"User\",\n                \"companyNm\": \"\",\n                \"departmentNm\": \"\",\n                \"positionNm\": \"\",\n                \"retired\": \"N\",\n                \"userId\": \"iip\",\n                \"password\": \"\",\n                \"userNm\": \"포탈관리자\",\n                \"cellPhone\": \" \",\n                \"phone\": \" \",\n                \"email\": \" \",\n                \"role\": null,\n                \"delYn\": \"N\",\n                \"regDate\": \"\",\n                \"regId\": \"\",\n                \"modDate\": \"\",\n                \"modId\": \"\",\n                \"dataAccessRoleList\": null\n            },\n            \"delYn\": \"N\",\n            \"regDate\": \"20210420140430577\",\n            \"regId\": \"shl\",\n            \"modDate\": \"20210420141114\",\n            \"modId\": \"iip\"\n        },\n        \"interfaceModel\": {\n            \"objectType\": \"InterfaceModel\",\n            \"objectType\": \"InterfaceModel\",\n            \"mid\": \"\",\n            \"interfaceId\": \"\",\n            \"integrationId\": \"OPENAPI-SERVICE-021\",\n            \"name\": \"ModelInfo\",\n            \"stage\": \"0\",\n            \"version\": \"0\",\n            \"std\": \"Y\",\n            \"stageName\": \"개발\",\n            \"deployStatus\": \"0\",\n            \"deployStatusName\": \"배포중\",\n            \"lastDeployDate\": \"\",\n            \"lastDeployUser\": \"\",\n            \"lastDeployUserNm\": \"\",\n            \"layoutCount\": 4,\n            \"mappingCount\": 0,\n            \"comments\": \"OPENAPI-SERVICE-020_Model\",\n            \"delYn\": \"N\",\n            \"regDate\": \"20210420140430577\",\n            \"regId\": \"shl\",\n            \"regNm\": \"\",\n            \"modDate\": \"20210420141114\",\n            \"modId\": \"iip\",\n            \"modNm\": \"포탈관리자\",\n            \"appModels\": [\n                {\n                    \"objectType\": \"AppModel\",\n                    \"objectType\": \"AppModel\",\n                    \"interfaceMid\": \"\",\n                    \"mid\": \"1\",\n                    \"name\": \"Nexacro\",\n                    \"cd\": \"MON\",\n                    \"type\": \"MON\",\n                    \"typeName\": \"\",\n                    \"systemId\": \"SS00000027\",\n                    \"systemName\": \"처리계UI\",\n                    \"systemCd\": \"CUI\",\n                    \"systemSeq\": 0,\n                    \"systemType\": \"0\",\n                    \"systemTypeName\": \"송신\",\n                    \"serverId\": \"SV00000003\",\n                    \"serverName\": \"BOS 1\",\n                    \"serverCd\": \"BO1\",\n                    \"tagInfo\": \"\",\n                    \"attributes\": {\n                        \"serviceId\": [\n                            {\n                                \"objectType\": \"AppModelAttribute\",\n                                \"objectType\": \"AppModelAttribute\",\n                                \"interfaceMid\": \"\",\n                                \"appMid\": \"1\",\n                                \"appType\": \"MON\",\n                                \"aid\": \"1\",\n                                \"name\": \"서비스ID\",\n                                \"cd\": \"serviceId\",\n                                \"type\": \"0\",\n                                \"inputType\": \"0\",\n                                \"defaultValue\": \"\",\n                                \"seq\": 0,\n                                \"val\": \"OPENAPI-SERVICE-021\",\n                                \"tag\": \"OPENAPI-SERVICE-021\"\n                            }\n                        ]\n                    },\n                    \"comments\": \"OpenApi수정\",\n                    \"delYn\": \"N\",\n                    \"regDate\": \"20210420141114\",\n                    \"regId\": \"iip\",\n                    \"modDate\": \"20210420141114\",\n                    \"modId\": \"iip\",\n                    \"msgs\": [\n                        {\n                            \"objectType\": \"MessageModel\",\n                            \"interfaceMid\": \"\",\n                            \"appMid\": \"\",\n                            \"mid\": \"\",\n                            \"name\": \"고객계좌정보\",\n                            \"type\": \"0\",\n                            \"typeName\": \"\",\n                            \"dataSetId\": \"30\",\n                            \"cd\": \"ONNBZ1999_I\",\n                            \"comments\": \"\",\n                            \"delYn\": \"N\",\n                            \"regDate\": \"20210420141114\",\n                            \"regId\": \"iip\",\n                            \"modDate\": \"20210420141114\",\n                            \"modId\": \"iip\"\n                        },\n                        {\n                            \"objectType\": \"MessageModel\",\n                            \"interfaceMid\": \"\",\n                            \"appMid\": \"\",\n                            \"mid\": \"\",\n                            \"name\": \"고객계좌정보결과\",\n                            \"type\": \"1\",\n                            \"typeName\": \"\",\n                            \"dataSetId\": \"31\",\n                            \"cd\": \"ONNBZ1999_O\",\n                            \"comments\": \"\",\n                            \"delYn\": \"N\",\n                            \"regDate\": \"20210420141114\",\n                            \"regId\": \"iip\",\n                            \"modDate\": \"20210420141114\",\n                            \"modId\": \"iip\"\n                        }\n                    ],\n                    \"mappings\": []\n                },\n                {\n                    \"objectType\": \"AppModel\",\n                    \"objectType\": \"AppModel\",\n                    \"interfaceMid\": \"\",\n                    \"mid\": \"2\",\n                    \"name\": \"프레임워크서비스\",\n                    \"cd\": \"FWS\",\n                    \"type\": \"FWS\",\n                    \"typeName\": \"\",\n                    \"systemId\": \"SS00000028\",\n                    \"systemName\": \"계약관리(처리계)\",\n                    \"systemCd\": \"NCM\",\n                    \"systemSeq\": 1,\n                    \"systemType\": \"2\",\n                    \"systemTypeName\": \"수신\",\n                    \"serverId\": \"SV00000003\",\n                    \"serverName\": \"BOS 1\",\n                    \"serverCd\": \"BO1\",\n                    \"tagInfo\": \"\",\n                    \"attributes\": {\n                        \"serviceId\": [\n                            {\n                                \"objectType\": \"AppModelAttribute\",\n                                \"objectType\": \"AppModelAttribute\",\n                                \"interfaceMid\": \"\",\n                                \"appMid\": \"\",\n                                \"appType\": \"FWS\",\n                                \"aid\": \"1\",\n                                \"name\": \"서비스ID\",\n                                \"cd\": \"serviceId\",\n                                \"type\": \"0\",\n                                \"inputType\": \"0\",\n                                \"defaultValue\": \"\",\n                                \"seq\": 0,\n                                \"val\": \"OPENAPI-SERVICE-020\",\n                                \"tag\": \"OPENAPI-SERVICE-020\"\n                            }\n                        ]\n                    },\n                    \"comments\": \"OpenApi수정\",\n                    \"delYn\": \"N\",\n                    \"regDate\": \"20210420141114\",\n                    \"regId\": \"iip\",\n                    \"modDate\": \"20210420141114\",\n                    \"modId\": \"iip\",\n                    \"msgs\": [\n                        {\n                            \"objectType\": \"MessageModel\",\n                            \"interfaceMid\": \"188\",\n                            \"appMid\": \"\",\n                            \"mid\": \"1\",\n                            \"name\": \"고객계좌정보\",\n                            \"type\": \"0\",\n                            \"typeName\": \"\",\n                            \"dataSetId\": \"30\",\n                            \"cd\": \"ONNBZ1999_I\",\n                            \"comments\": \"\",\n                            \"delYn\": \"N\",\n                            \"regDate\": \"20210420141114\",\n                            \"regId\": \"iip\",\n                            \"modDate\": \"20210420141114\",\n                            \"modId\": \"iip\"\n                        },\n                        {\n                            \"objectType\": \"MessageModel\",\n                            \"interfaceMid\": \"188\",\n                            \"appMid\": \"\",\n                            \"mid\": \"2\",\n                            \"name\": \"고객계좌정보결과\",\n                            \"type\": \"1\",\n                            \"typeName\": \"\",\n                            \"dataSetId\": \"31\",\n                            \"cd\": \"ONNBZ1999_O\",\n                            \"comments\": \"\",\n                            \"delYn\": \"N\",\n                            \"regDate\": \"20210420141114\",\n                            \"regId\": \"iip\",\n                            \"modDate\": \"20210420141114\",\n                            \"modId\": \"iip\"\n                        }\n                    ],\n                    \"mappings\": []\n                }\n            ]\n        },\n        \"dataSetMap\": {\n            \"30\": {\n                \"objectType\": \"DataSet\",\n                \"objectType\": \"DataSet\",\n                \"dataSetId\": \"30\",\n                \"name1\": \"고객계좌정보\",\n                \"name2\": \"accountInfo\",\n                \"cd\": \"ONNBZ1999_I\",\n                \"dataFormat\": \"3\",\n                \"dataFormatNm\": \"fixedlength\",\n                \"encryptType\": \"N\",\n                \"encryptTypeNm\": \"\",\n                \"length\": 13,\n                \"isStandard\": \"Y\",\n                \"use\": \"Y\",\n                \"isMapped\": \"N\",\n                \"isRoot\": \"Y\",\n                \"recordDelimiter\": \"\\n\",\n                \"fieldDelimiter\": \",\",\n                \"dataFieldList\": [\n                    {\n                        \"objectType\": \"DataField\",\n                        \"objectType\": \"DataField\",\n                        \"id\": \"1\",\n                        \"parentId\": null,\n                        \"dataSetId\": \"30\",\n                        \"dataFieldId\": \"1\",\n                        \"seq\": 1,\n                        \"name1\": \"성명\",\n                        \"name2\": \"name\",\n                        \"cd\": \"name\",\n                        \"type\": \"0\",\n                        \"typeNm\": \"string\",\n                        \"offset\": 0,\n                        \"length\": 10,\n                        \"encryptType\": \"\",\n                        \"encryptTypeNm\": \"\",\n                        \"isLengthField\": \"N\",\n                        \"repeatCount\": 0,\n                        \"hasRepeatCountField\": \"N\",\n                        \"repeatFieldId\": \"\",\n                        \"repeatDataSetId\": \"\",\n                        \"defaultValue\": \"default\",\n                        \"justify\": \"L\",\n                        \"justifyNm\": \"왼쪽정렬\",\n                        \"padding\": \" \",\n                        \"fieldSetId\": \"\",\n                        \"parentNmKo\": \"\",\n                        \"parentNmEn\": \"\",\n                        \"requiredYn\": \"Y\",\n                        \"scale\": 0,\n                        \"koreanYn\": \"Y\",\n                        \"metaYn\": \"Y\",\n                        \"decimalPointYn\": \"N\",\n                        \"maskingYn\": \"N\",\n                        \"maskingPatternCd\": \"\",\n                        \"userKeyYn\": \"N\",\n                        \"pk\": \"N\",\n                        \"comments\": \"고객명\",\n                        \"refDataSetId\": \"\",\n                        \"refDataFieldId\": \"\",\n                        \"delYn\": \"N\",\n                        \"regDate\": \"20210422091753814\",\n                        \"regId\": \"\",\n                        \"modDate\": \"\",\n                        \"modId\": \"\",\n                        \"valid\": false\n                    },\n                    {\n                        \"objectType\": \"DataField\",\n                        \"objectType\": \"DataField\",\n                        \"id\": \"2\",\n                        \"parentId\": null,\n                        \"dataSetId\": \"30\",\n                        \"dataFieldId\": \"2\",\n                        \"seq\": 2,\n                        \"name1\": \"나이\",\n                        \"name2\": \"age\",\n                        \"cd\": \"age\",\n                        \"type\": \"0\",\n                        \"typeNm\": \"string\",\n                        \"offset\": 10,\n                        \"length\": 3,\n                        \"encryptType\": \"\",\n                        \"encryptTypeNm\": \"\",\n                        \"isLengthField\": \"N\",\n                        \"repeatCount\": 0,\n                        \"hasRepeatCountField\": \"N\",\n                        \"repeatFieldId\": \"\",\n                        \"repeatDataSetId\": \"\",\n                        \"defaultValue\": \"000\",\n                        \"justify\": \"R\",\n                        \"justifyNm\": \"오른쪽정렬\",\n                        \"padding\": \"0\",\n                        \"fieldSetId\": \"\",\n                        \"parentNmKo\": \"\",\n                        \"parentNmEn\": \"\",\n                        \"requiredYn\": \"Y\",\n                        \"scale\": 0,\n                        \"koreanYn\": \"Y\",\n                        \"metaYn\": \"Y\",\n                        \"decimalPointYn\": \"N\",\n                        \"maskingYn\": \"N\",\n                        \"maskingPatternCd\": \"\",\n                        \"userKeyYn\": \"N\",\n                        \"pk\": \"N\",\n                        \"comments\": \"고객나이(문자)\",\n                        \"refDataSetId\": \"\",\n                        \"refDataFieldId\": \"\",\n                        \"delYn\": \"N\",\n                        \"regDate\": \"20210422091753814\",\n                        \"regId\": \"\",\n                        \"modDate\": \"\",\n                        \"modId\": \"\",\n                        \"valid\": false\n                    }\n                ],\n                \"complexTypeMap\": {},\n                \"comments\": \"\",\n                \"delYn\": \"N\",\n                \"regDate\": \"20210415154149978\",\n                \"regId\": \"shl\",\n                \"modDate\": \"20210420140430577\",\n                \"modId\": \"shl\",\n                \"regUser\": {\n                    \"objectType\": \"User\",\n                    \"objectType\": \"User\",\n                    \"companyNm\": \"\",\n                    \"departmentNm\": \"\",\n                    \"positionNm\": \"\",\n                    \"retired\": \"N\",\n                    \"userId\": \"shl\",\n                    \"password\": \"\",\n                    \"userNm\": \"포털개발자\",\n                    \"cellPhone\": \"\",\n                    \"phone\": \"\",\n                    \"email\": \"\",\n                    \"role\": null,\n                    \"delYn\": \"N\",\n                    \"regDate\": \"\",\n                    \"regId\": \"\",\n                    \"modDate\": \"\",\n                    \"modId\": \"\",\n                    \"dataAccessRoleList\": null\n                },\n                \"modUser\": {\n                    \"objectType\": \"User\",\n                    \"objectType\": \"User\",\n                    \"companyNm\": \"\",\n                    \"departmentNm\": \"\",\n                    \"positionNm\": \"\",\n                    \"retired\": \"N\",\n                    \"userId\": \"shl\",\n                    \"password\": \"\",\n                    \"userNm\": \"포털개발자\",\n                    \"cellPhone\": \"\",\n                    \"phone\": \"\",\n                    \"email\": \"\",\n                    \"role\": null,\n                    \"delYn\": \"N\",\n                    \"regDate\": \"\",\n                    \"regId\": \"\",\n                    \"modDate\": \"\",\n                    \"modId\": \"\",\n                    \"dataAccessRoleList\": null\n                }\n            },\n            \"31\": {\n                \"objectType\": \"DataSet\",\n                \"objectType\": \"DataSet\",\n                \"dataSetId\": \"31\",\n                \"name1\": \"고객계좌정보결과\",\n                \"name2\": \"accountInfoResult\",\n                \"cd\": \"ONNBZ1999_O\",\n                \"dataFormat\": \"3\",\n                \"dataFormatNm\": \"fixedlength\",\n                \"encryptType\": \"N\",\n                \"encryptTypeNm\": \"\",\n                \"length\": 13,\n                \"isStandard\": \"N\",\n                \"use\": \"Y\",\n                \"isMapped\": \"N\",\n                \"isRoot\": \"Y\",\n                \"recordDelimiter\": \"\\n\",\n                \"fieldDelimiter\": \",\",\n                \"dataFieldList\": [\n                    {\n                        \"objectType\": \"DataField\",\n                        \"objectType\": \"DataField\",\n                        \"id\": \"1\",\n                        \"parentId\": null,\n                        \"dataSetId\": \"31\",\n                        \"dataFieldId\": \"1\",\n                        \"seq\": 1,\n                        \"name1\": \"성명\",\n                        \"name2\": \"name\",\n                        \"cd\": \"name\",\n                        \"type\": \"0\",\n                        \"typeNm\": \"string\",\n                        \"offset\": 0,\n                        \"length\": 10,\n                        \"encryptType\": \"\",\n                        \"encryptTypeNm\": \"\",\n                        \"isLengthField\": \"N\",\n                        \"repeatCount\": 0,\n                        \"hasRepeatCountField\": \"N\",\n                        \"repeatFieldId\": \"\",\n                        \"repeatDataSetId\": \"\",\n                        \"defaultValue\": \"default\",\n                        \"justify\": \"L\",\n                        \"justifyNm\": \"왼쪽정렬\",\n                        \"padding\": \" \",\n                        \"fieldSetId\": \"\",\n                        \"parentNmKo\": \"\",\n                        \"parentNmEn\": \"\",\n                        \"requiredYn\": \"Y\",\n                        \"scale\": 0,\n                        \"koreanYn\": \"Y\",\n                        \"metaYn\": \"Y\",\n                        \"decimalPointYn\": \"N\",\n                        \"maskingYn\": \"N\",\n                        \"maskingPatternCd\": \"\",\n                        \"userKeyYn\": \"N\",\n                        \"pk\": \"N\",\n                        \"comments\": \"고객명\",\n                        \"refDataSetId\": \"\",\n                        \"refDataFieldId\": \"\",\n                        \"delYn\": \"N\",\n                        \"regDate\": \"20210422091753832\",\n                        \"regId\": \"\",\n                        \"modDate\": \"\",\n                        \"modId\": \"\",\n                        \"valid\": false\n                    },\n                    {\n                        \"objectType\": \"DataField\",\n                        \"objectType\": \"DataField\",\n                        \"id\": \"2\",\n                        \"parentId\": null,\n                        \"dataSetId\": \"31\",\n                        \"dataFieldId\": \"2\",\n                        \"seq\": 2,\n                        \"name1\": \"나이\",\n                        \"name2\": \"age\",\n                        \"cd\": \"age\",\n                        \"type\": \"0\",\n                        \"typeNm\": \"string\",\n                        \"offset\": 10,\n                        \"length\": 3,\n                        \"encryptType\": \"\",\n                        \"encryptTypeNm\": \"\",\n                        \"isLengthField\": \"N\",\n                        \"repeatCount\": 0,\n                        \"hasRepeatCountField\": \"N\",\n                        \"repeatFieldId\": \"\",\n                        \"repeatDataSetId\": \"\",\n                        \"defaultValue\": \"000\",\n                        \"justify\": \"R\",\n                        \"justifyNm\": \"오른쪽정렬\",\n                        \"padding\": \"0\",\n                        \"fieldSetId\": \"\",\n                        \"parentNmKo\": \"\",\n                        \"parentNmEn\": \"\",\n                        \"requiredYn\": \"Y\",\n                        \"scale\": 0,\n                        \"koreanYn\": \"Y\",\n                        \"metaYn\": \"Y\",\n                        \"decimalPointYn\": \"N\",\n                        \"maskingYn\": \"N\",\n                        \"maskingPatternCd\": \"\",\n                        \"userKeyYn\": \"N\",\n                        \"pk\": \"N\",\n                        \"comments\": \"고객나이(문자)\",\n                        \"refDataSetId\": \"\",\n                        \"refDataFieldId\": \"\",\n                        \"delYn\": \"N\",\n                        \"regDate\": \"20210422091753833\",\n                        \"regId\": \"\",\n                        \"modDate\": \"\",\n                        \"modId\": \"\",\n                        \"valid\": false\n                    }\n                ],\n                \"complexTypeMap\": {},\n                \"comments\": \"\",\n                \"delYn\": \"N\",\n                \"regDate\": \"20210415154149978\",\n                \"regId\": \"shl\",\n                \"modDate\": \"20210420140430577\",\n                \"modId\": \"shl\",\n                \"regUser\": {\n                    \"objectType\": \"User\",\n                    \"objectType\": \"User\",\n                    \"companyNm\": \"\",\n                    \"departmentNm\": \"\",\n                    \"positionNm\": \"\",\n                    \"retired\": \"N\",\n                    \"userId\": \"shl\",\n                    \"password\": \"\",\n                    \"userNm\": \"포털개발자\",\n                    \"cellPhone\": \"\",\n                    \"phone\": \"\",\n                    \"email\": \"\",\n                    \"role\": null,\n                    \"delYn\": \"N\",\n                    \"regDate\": \"\",\n                    \"regId\": \"\",\n                    \"modDate\": \"\",\n                    \"modId\": \"\",\n                    \"dataAccessRoleList\": null\n                },\n                \"modUser\": {\n                    \"objectType\": \"User\",\n                    \"objectType\": \"User\",\n                    \"companyNm\": \"\",\n                    \"departmentNm\": \"\",\n                    \"positionNm\": \"\",\n                    \"retired\": \"N\",\n                    \"userId\": \"shl\",\n                    \"password\": \"\",\n                    \"userNm\": \"포털개발자\",\n                    \"cellPhone\": \"\",\n                    \"phone\": \"\",\n                    \"email\": \"\",\n                    \"role\": null,\n                    \"delYn\": \"N\",\n                    \"regDate\": \"\",\n                    \"regId\": \"\",\n                    \"modDate\": \"\",\n                    \"modId\": \"\",\n                    \"dataAccessRoleList\": null\n                }\n            }\n        },\n        \"mappingMap\": {},\n        \"regDate\": \"20210422091753833\",\n        \"regId\": \"shl\",\n        \"modDate\": \"\",\n        \"modId\": \"\"\n    },\n  \"startTime\": \"20190416105001001\",\n  \"endTime\": null,\n  \"errorCd\":\"0\",\n  \"errorMsg\":\"\",\n  \"userId\": \"iip\",\n  \"appId\": \"\",\n  \"checkSession\":false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/mint/openapi/models/requirement-models?method=POST",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"mint",
+						"openapi",
+						"models",
+						"requirement-models"
+					],
+					"query": [
+						{
+							"key": "method",
+							"value": "POST"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "modifyRequirementModel",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"objectType\": \"ComMessage\",\n  \"requestObject\":{\n        \"objectType\": \"RequirementModel\",\n        \"requirement\": {\n            \"objectType\": \"Requirement\",\n            \"objectType\": \"Requirement\",\n            \"pageInfo\": null,\n            \"tester\": null,\n            \"developer\": null,\n            \"mover\": null,\n            \"requirementId\": \"RQ00000461\",\n            \"requirementNm\": \"서비스인터페이스021\",\n            \"status\": \"I0\",\n            \"statusNm\": \"이행완료\",\n            \"business\": {\n                \"objectType\": \"Business\",\n                \"objectType\": \"Business\",\n                \"childCnt\": 0,\n                \"businessId\": \"BZ00000018\",\n                \"businessNm\": \"계약관리(처리계)\",\n                \"businessCd\": \"NCM\",\n                \"seq\": 0,\n                \"grpYn\": \"N\",\n                \"rootYn\": \"N\",\n                \"nodeType\": \"\",\n                \"nodeTypeNm\": \"\",\n                \"parentBusiness\": null,\n                \"comments\": \"\",\n                \"delYn\": \"N\",\n                \"regDate\": \"\",\n                \"regId\": \"\",\n                \"modDate\": \"\",\n                \"modId\": \"\",\n                \"relUsers\": []\n            },\n            \"interface\": {\n                \"objectType\": \"Interface\",\n                \"objectType\": \"Interface\",\n                \"integrationId\": \"OPENAPI-SERVICE-021\",\n                \"channelChangeComments\": \"\",\n                \"channelChangeCd\": \"\",\n                \"channelChangeNm\": \"\",\n                \"dataFrequencyInput\": \"\",\n                \"interfaceId\": \"F@00000461\",\n                \"interfaceNm\": \"서비스인터페이스021\",\n                \"channel\": {\n                    \"objectType\": \"Channel\",\n                    \"objectType\": \"Channel\",\n                    \"channelId\": \"CN00000002\",\n                    \"channelNm\": \"처리계FW\",\n                    \"channelCd\": \"\",\n                    \"externalYn\": \"N\",\n                    \"mapRule\": \"0\",\n                    \"comments\": \"\",\n                    \"delYn\": \"N\",\n                    \"regDate\": \"\",\n                    \"regId\": \"\",\n                    \"modDate\": \"\",\n                    \"modId\": \"\",\n                    \"relUsers\": [],\n                    \"relChlAttributes\": []\n                },\n                \"status\": \"0\",\n                \"statusNm\": \"\",\n                \"importance\": \"\",\n                \"importanceNm\": \"\",\n                \"mapCd\": \"\",\n                \"interfaceMapping\": null,\n                \"maxDelayTime\": \"\",\n                \"maxErrorTime\": \"\",\n                \"maxDelayUnit\": \"\",\n                \"maxDelayUnitNm\": \"\",\n                \"maxErrorUnit\": \"\",\n                \"maxErrorUnitNm\": \"\",\n                \"refPattern\": null,\n                \"dataPrDir\": \"1\",\n                \"dataPrDirNm\": \"양방향\",\n                \"appPrMethod\": \"0\",\n                \"appPrMethodNm\": \"동기\",\n                \"dataPrMethod\": \"1\",\n                \"dataPrMethodNm\": \"Online\",\n                \"dataFrequency\": \"9\",\n                \"dataFrequencyNm\": \"수시\",\n                \"sizePerTran\": 0,\n                \"cntPerFrequency\": 0,\n                \"cntPerDay\": 0,\n                \"qttPerDay\": 0,\n                \"startResType\": \"\",\n                \"startResTypeNm\": \"\",\n                \"endResType\": \"\",\n                \"endResTypeNm\": \"\",\n                \"startNodeCnt\": 0,\n                \"endNodeCnt\": 0,\n                \"dataSeqYn\": \"N\",\n                \"delYn\": \"N\",\n                \"comments\": \"\",\n                \"regDate\": \"20210420140430577\",\n                \"regId\": \"shl\",\n                \"modDate\": \"20210420141114698\",\n                \"modId\": \"iip\",\n                \"systemList\": [\n                    {\n                        \"objectType\": \"System\",\n                        \"objectType\": \"System\",\n                        \"childCnt\": 0,\n                        \"systemId\": \"SS00000027\",\n                        \"systemNm\": \"처리계UI\",\n                        \"systemCd\": \"CUI\",\n                        \"parentSystem\": null,\n                        \"grpYn\": \"\",\n                        \"rootYn\": \"\",\n                        \"externalYn\": \"\",\n                        \"zoneInfo\": null,\n                        \"areaInput\": \"\",\n                        \"comments\": \"\",\n                        \"delYn\": \"N\",\n                        \"regDate\": \"20210420140430577\",\n                        \"regId\": \"shl\",\n                        \"modDate\": \"\",\n                        \"modId\": \"\",\n                        \"seq\": 0,\n                        \"nodeType\": \"0\",\n                        \"nodeTypeNm\": \"송신\",\n                        \"serverList\": [],\n                        \"relUsers\": [],\n                        \"service\": \"\",\n                        \"serviceDesc\": \"\",\n                        \"resourceCd\": \"5\",\n                        \"resourceNm\": \"NexaCro\"\n                    },\n                    {\n                        \"objectType\": \"System\",\n                        \"objectType\": \"System\",\n                        \"childCnt\": 0,\n                        \"systemId\": \"SS00000028\",\n                        \"systemNm\": \"계약관리(처리계)\",\n                        \"systemCd\": \"NCM\",\n                        \"parentSystem\": null,\n                        \"grpYn\": \"\",\n                        \"rootYn\": \"\",\n                        \"externalYn\": \"\",\n                        \"zoneInfo\": null,\n                        \"areaInput\": \"\",\n                        \"comments\": \"\",\n                        \"delYn\": \"N\",\n                        \"regDate\": \"20210420140430577\",\n                        \"regId\": \"shl\",\n                        \"modDate\": \"\",\n                        \"modId\": \"\",\n                        \"seq\": 1,\n                        \"nodeType\": \"2\",\n                        \"nodeTypeNm\": \"수신\",\n                        \"serverList\": [],\n                        \"relUsers\": [],\n                        \"service\": \"\",\n                        \"serviceDesc\": \"\",\n                        \"resourceCd\": \"4\",\n                        \"resourceNm\": \"Framework\"\n                    }\n                ],\n                \"businessList\": [\n                    {\n                        \"objectType\": \"Business\",\n                        \"objectType\": \"Business\",\n                        \"childCnt\": 0,\n                        \"businessId\": \"BZ00000018\",\n                        \"businessNm\": \"계약관리(처리계)\",\n                        \"businessCd\": \"NCM\",\n                        \"seq\": 0,\n                        \"grpYn\": \"N\",\n                        \"rootYn\": \"N\",\n                        \"nodeType\": \"2\",\n                        \"nodeTypeNm\": \"수신\",\n                        \"parentBusiness\": null,\n                        \"comments\": \"\",\n                        \"delYn\": \"N\",\n                        \"regDate\": \"20210420140430577\",\n                        \"regId\": \"shl\",\n                        \"modDate\": \"\",\n                        \"modId\": \"\",\n                        \"relUsers\": []\n                    },\n                    {\n                        \"objectType\": \"Business\",\n                        \"objectType\": \"Business\",\n                        \"childCnt\": 0,\n                        \"businessId\": \"BZ00000018\",\n                        \"businessNm\": \"계약관리(처리계)\",\n                        \"businessCd\": \"NCM\",\n                        \"seq\": 1,\n                        \"grpYn\": \"N\",\n                        \"rootYn\": \"N\",\n                        \"nodeType\": \"0\",\n                        \"nodeTypeNm\": \"송신\",\n                        \"parentBusiness\": null,\n                        \"comments\": \"\",\n                        \"delYn\": \"N\",\n                        \"regDate\": \"20210420140430577\",\n                        \"regId\": \"shl\",\n                        \"modDate\": \"\",\n                        \"modId\": \"\",\n                        \"relUsers\": []\n                    }\n                ],\n                \"senderSystemInfoList\": [],\n                \"receiverSystemInfoList\": [\n                    {\n                        \"objectType\": \"DisplaySystemInfo\",\n                        \"objectType\": \"DisplaySystemInfo\",\n                        \"seq\": 0,\n                        \"systemId\": \"SS00000027\",\n                        \"systemCd\": \"CUI\",\n                        \"systemNm\": \"처리계UI\",\n                        \"nodeType\": \"0\",\n                        \"nodeTypeNm\": \"송신\",\n                        \"service\": \"\",\n                        \"serviceDesc\": \"\",\n                        \"resourceCd\": \"5\",\n                        \"resourceNm\": \"NexaCro\",\n                        \"businessId\": \"BZ00000018\",\n                        \"businessCd\": \"NCM\",\n                        \"businessNm\": \"계약관리(처리계)\",\n                        \"orgId\": \"OR00000001\",\n                        \"orgCd\": \"SHL\",\n                        \"orgNm\": \"신한생명\"\n                    },\n                    {\n                        \"objectType\": \"DisplaySystemInfo\",\n                        \"objectType\": \"DisplaySystemInfo\",\n                        \"seq\": 1,\n                        \"systemId\": \"SS00000028\",\n                        \"systemCd\": \"NCM\",\n                        \"systemNm\": \"계약관리(처리계)\",\n                        \"nodeType\": \"2\",\n                        \"nodeTypeNm\": \"수신\",\n                        \"service\": \"\",\n                        \"serviceDesc\": \"\",\n                        \"resourceCd\": \"4\",\n                        \"resourceNm\": \"Framework\",\n                        \"businessId\": \"BZ00000018\",\n                        \"businessCd\": \"NCM\",\n                        \"businessNm\": \"계약관리(처리계)\",\n                        \"orgId\": \"OR00000001\",\n                        \"orgCd\": \"SHL\",\n                        \"orgNm\": \"신한생명\"\n                    }\n                ],\n                \"properties\": [],\n                \"relUsers\": [],\n                \"tagList\": [],\n                \"dataAccessRoleList\": [],\n                \"hasDataMap\": \"N\",\n                \"hasDataMapNm\": \"\"\n            },\n            \"devExpYmd\": \"20210427\",\n            \"devFinYmd\": \"\",\n            \"testExpYmd\": \"20210427\",\n            \"testFinYmd\": \"\",\n            \"realExpYmd\": \"20210427\",\n            \"realFinYmd\": \"\",\n            \"commentList\": [],\n            \"attatchFileList\": [],\n            \"comments\": \"OpenApi수정\",\n            \"regUser\": {\n                \"objectType\": \"User\",\n                \"objectType\": \"User\",\n                \"companyNm\": \"\",\n                \"departmentNm\": \"\",\n                \"positionNm\": \"\",\n                \"retired\": \"N\",\n                \"userId\": \"shl\",\n                \"password\": \"\",\n                \"userNm\": \"포털개발자\",\n                \"cellPhone\": \" \",\n                \"phone\": \" \",\n                \"email\": \" \",\n                \"role\": null,\n                \"delYn\": \"N\",\n                \"regDate\": \"\",\n                \"regId\": \"\",\n                \"modDate\": \"\",\n                \"modId\": \"\",\n                \"dataAccessRoleList\": null\n            },\n            \"modUser\": {\n                \"objectType\": \"User\",\n                \"objectType\": \"User\",\n                \"companyNm\": \"\",\n                \"departmentNm\": \"\",\n                \"positionNm\": \"\",\n                \"retired\": \"N\",\n                \"userId\": \"iip\",\n                \"password\": \"\",\n                \"userNm\": \"포탈관리자\",\n                \"cellPhone\": \" \",\n                \"phone\": \" \",\n                \"email\": \" \",\n                \"role\": null,\n                \"delYn\": \"N\",\n                \"regDate\": \"\",\n                \"regId\": \"\",\n                \"modDate\": \"\",\n                \"modId\": \"\",\n                \"dataAccessRoleList\": null\n            },\n            \"delYn\": \"N\",\n            \"regDate\": \"20210422091753833\",\n            \"regId\": \"shl\",\n            \"modDate\": \"20210420141114\",\n            \"modId\": \"iip\"\n        },\n        \"interfaceModel\": {\n            \"objectType\": \"InterfaceModel\",\n            \"objectType\": \"InterfaceModel\",\n            \"mid\": \"189\",\n            \"interfaceId\": \"F@00000461\",\n            \"integrationId\": \"OPENAPI-SERVICE-021\",\n            \"name\": \"ModelInfo\",\n            \"stage\": \"0\",\n            \"version\": \"0\",\n            \"std\": \"Y\",\n            \"stageName\": \"개발\",\n            \"deployStatus\": \"0\",\n            \"deployStatusName\": \"배포중\",\n            \"lastDeployDate\": \"\",\n            \"lastDeployUser\": \"\",\n            \"lastDeployUserNm\": \"\",\n            \"layoutCount\": 4,\n            \"mappingCount\": 0,\n            \"comments\": \"OPENAPI-SERVICE-020_Model\",\n            \"delYn\": \"N\",\n            \"regDate\": \"20210422091753833\",\n            \"regId\": \"shl\",\n            \"regNm\": \"\",\n            \"modDate\": \"20210420141114\",\n            \"modId\": \"iip\",\n            \"modNm\": \"포탈관리자\",\n            \"appModels\": [\n                {\n                    \"objectType\": \"AppModel\",\n                    \"objectType\": \"AppModel\",\n                    \"interfaceMid\": \"189\",\n                    \"mid\": \"1\",\n                    \"name\": \"Nexacro\",\n                    \"cd\": \"MON\",\n                    \"type\": \"MON\",\n                    \"typeName\": \"\",\n                    \"systemId\": \"SS00000027\",\n                    \"systemName\": \"처리계UI\",\n                    \"systemCd\": \"CUI\",\n                    \"systemSeq\": 0,\n                    \"systemType\": \"0\",\n                    \"systemTypeName\": \"송신\",\n                    \"serverId\": \"SV00000003\",\n                    \"serverName\": \"BOS 1\",\n                    \"serverCd\": \"BO1\",\n                    \"tagInfo\": \"\",\n                    \"attributes\": {\n                        \"serviceId\": [\n                            {\n                                \"objectType\": \"AppModelAttribute\",\n                                \"objectType\": \"AppModelAttribute\",\n                                \"interfaceMid\": \"189\",\n                                \"appMid\": \"1\",\n                                \"appType\": \"MON\",\n                                \"aid\": \"1\",\n                                \"name\": \"서비스ID\",\n                                \"cd\": \"serviceId\",\n                                \"type\": \"0\",\n                                \"inputType\": \"0\",\n                                \"defaultValue\": \"\",\n                                \"seq\": 0,\n                                \"val\": \"OPENAPI-SERVICE-021\",\n                                \"tag\": \"OPENAPI-SERVICE-021\"\n                            }\n                        ]\n                    },\n                    \"comments\": \"OpenApi수정\",\n                    \"delYn\": \"N\",\n                    \"regDate\": \"20210422091753833\",\n                    \"regId\": \"shl\",\n                    \"modDate\": \"20210420141114\",\n                    \"modId\": \"iip\",\n                    \"msgs\": [\n                        {\n                            \"objectType\": \"MessageModel\",\n                            \"interfaceMid\": \"189\",\n                            \"appMid\": \"1\",\n                            \"mid\": \"1\",\n                            \"name\": \"고객계좌정보\",\n                            \"type\": \"0\",\n                            \"typeName\": \"\",\n                            \"dataSetId\": \"30\",\n                            \"cd\": \"ONNBZ1999_I\",\n                            \"comments\": \"\",\n                            \"delYn\": \"N\",\n                            \"regDate\": \"20210422091753833\",\n                            \"regId\": \"shl\",\n                            \"modDate\": \"20210420141114\",\n                            \"modId\": \"iip\"\n                        },\n                        {\n                            \"objectType\": \"MessageModel\",\n                            \"interfaceMid\": \"189\",\n                            \"appMid\": \"1\",\n                            \"mid\": \"2\",\n                            \"name\": \"고객계좌정보결과\",\n                            \"type\": \"1\",\n                            \"typeName\": \"\",\n                            \"dataSetId\": \"31\",\n                            \"cd\": \"ONNBZ1999_O\",\n                            \"comments\": \"\",\n                            \"delYn\": \"N\",\n                            \"regDate\": \"20210422091753833\",\n                            \"regId\": \"shl\",\n                            \"modDate\": \"20210420141114\",\n                            \"modId\": \"iip\"\n                        }\n                    ],\n                    \"mappings\": []\n                },\n                {\n                    \"objectType\": \"AppModel\",\n                    \"objectType\": \"AppModel\",\n                    \"interfaceMid\": \"189\",\n                    \"mid\": \"2\",\n                    \"name\": \"프레임워크서비스\",\n                    \"cd\": \"FWS\",\n                    \"type\": \"FWS\",\n                    \"typeName\": \"\",\n                    \"systemId\": \"SS00000028\",\n                    \"systemName\": \"계약관리(처리계)\",\n                    \"systemCd\": \"NCM\",\n                    \"systemSeq\": 1,\n                    \"systemType\": \"2\",\n                    \"systemTypeName\": \"수신\",\n                    \"serverId\": \"SV00000003\",\n                    \"serverName\": \"BOS 1\",\n                    \"serverCd\": \"BO1\",\n                    \"tagInfo\": \"\",\n                    \"attributes\": {\n                        \"serviceId\": [\n                            {\n                                \"objectType\": \"AppModelAttribute\",\n                                \"objectType\": \"AppModelAttribute\",\n                                \"interfaceMid\": \"189\",\n                                \"appMid\": \"2\",\n                                \"appType\": \"FWS\",\n                                \"aid\": \"1\",\n                                \"name\": \"서비스ID\",\n                                \"cd\": \"serviceId\",\n                                \"type\": \"0\",\n                                \"inputType\": \"0\",\n                                \"defaultValue\": \"\",\n                                \"seq\": 0,\n                                \"val\": \"OPENAPI-SERVICE-020\",\n                                \"tag\": \"OPENAPI-SERVICE-020\"\n                            }\n                        ]\n                    },\n                    \"comments\": \"OpenApi수정\",\n                    \"delYn\": \"N\",\n                    \"regDate\": \"20210422091753833\",\n                    \"regId\": \"shl\",\n                    \"modDate\": \"20210420141114\",\n                    \"modId\": \"iip\",\n                    \"msgs\": [\n                        {\n                            \"objectType\": \"MessageModel\",\n                            \"interfaceMid\": \"189\",\n                            \"appMid\": \"2\",\n                            \"mid\": \"1\",\n                            \"name\": \"고객계좌정보\",\n                            \"type\": \"0\",\n                            \"typeName\": \"\",\n                            \"dataSetId\": \"30\",\n                            \"cd\": \"ONNBZ1999_I\",\n                            \"comments\": \"\",\n                            \"delYn\": \"N\",\n                            \"regDate\": \"20210422091753833\",\n                            \"regId\": \"shl\",\n                            \"modDate\": \"20210420141114\",\n                            \"modId\": \"iip\"\n                        },\n                        {\n                            \"objectType\": \"MessageModel\",\n                            \"interfaceMid\": \"189\",\n                            \"appMid\": \"2\",\n                            \"mid\": \"2\",\n                            \"name\": \"고객계좌정보결과\",\n                            \"type\": \"1\",\n                            \"typeName\": \"\",\n                            \"dataSetId\": \"31\",\n                            \"cd\": \"ONNBZ1999_O\",\n                            \"comments\": \"\",\n                            \"delYn\": \"N\",\n                            \"regDate\": \"20210422091753833\",\n                            \"regId\": \"shl\",\n                            \"modDate\": \"20210420141114\",\n                            \"modId\": \"iip\"\n                        }\n                    ],\n                    \"mappings\": []\n                }\n            ]\n        },\n        \"dataSetMap\": {\n            \"30\": {\n                \"objectType\": \"DataSet\",\n                \"objectType\": \"DataSet\",\n                \"dataSetId\": \"30\",\n                \"name1\": \"고객계좌정보\",\n                \"name2\": \"accountInfo\",\n                \"cd\": \"ONNBZ1999_I\",\n                \"dataFormat\": \"3\",\n                \"dataFormatNm\": \"fixedlength\",\n                \"encryptType\": \"N\",\n                \"encryptTypeNm\": \"\",\n                \"length\": 13,\n                \"isStandard\": \"Y\",\n                \"use\": \"Y\",\n                \"isMapped\": \"N\",\n                \"isRoot\": \"Y\",\n                \"recordDelimiter\": \"\\n\",\n                \"fieldDelimiter\": \",\",\n                \"dataFieldList\": [\n                    {\n                        \"objectType\": \"DataField\",\n                        \"objectType\": \"DataField\",\n                        \"id\": \"1\",\n                        \"parentId\": null,\n                        \"dataSetId\": \"30\",\n                        \"dataFieldId\": \"1\",\n                        \"seq\": 1,\n                        \"name1\": \"성명\",\n                        \"name2\": \"name\",\n                        \"cd\": \"name\",\n                        \"type\": \"0\",\n                        \"typeNm\": \"string\",\n                        \"offset\": 0,\n                        \"length\": 10,\n                        \"encryptType\": \"\",\n                        \"encryptTypeNm\": \"\",\n                        \"isLengthField\": \"N\",\n                        \"repeatCount\": 0,\n                        \"hasRepeatCountField\": \"N\",\n                        \"repeatFieldId\": \"\",\n                        \"repeatDataSetId\": \"\",\n                        \"defaultValue\": \"default\",\n                        \"justify\": \"L\",\n                        \"justifyNm\": \"왼쪽정렬\",\n                        \"padding\": \" \",\n                        \"fieldSetId\": \"\",\n                        \"parentNmKo\": \"\",\n                        \"parentNmEn\": \"\",\n                        \"requiredYn\": \"Y\",\n                        \"scale\": 0,\n                        \"koreanYn\": \"Y\",\n                        \"metaYn\": \"Y\",\n                        \"decimalPointYn\": \"N\",\n                        \"maskingYn\": \"N\",\n                        \"maskingPatternCd\": \"\",\n                        \"userKeyYn\": \"N\",\n                        \"pk\": \"N\",\n                        \"comments\": \"고객명\",\n                        \"refDataSetId\": \"\",\n                        \"refDataFieldId\": \"\",\n                        \"delYn\": \"N\",\n                        \"regDate\": \"20210422091753814\",\n                        \"regId\": \"\",\n                        \"modDate\": \"\",\n                        \"modId\": \"\",\n                        \"valid\": false\n                    },\n                    {\n                        \"objectType\": \"DataField\",\n                        \"objectType\": \"DataField\",\n                        \"id\": \"2\",\n                        \"parentId\": null,\n                        \"dataSetId\": \"30\",\n                        \"dataFieldId\": \"2\",\n                        \"seq\": 2,\n                        \"name1\": \"나이\",\n                        \"name2\": \"age\",\n                        \"cd\": \"age\",\n                        \"type\": \"0\",\n                        \"typeNm\": \"string\",\n                        \"offset\": 10,\n                        \"length\": 3,\n                        \"encryptType\": \"\",\n                        \"encryptTypeNm\": \"\",\n                        \"isLengthField\": \"N\",\n                        \"repeatCount\": 0,\n                        \"hasRepeatCountField\": \"N\",\n                        \"repeatFieldId\": \"\",\n                        \"repeatDataSetId\": \"\",\n                        \"defaultValue\": \"000\",\n                        \"justify\": \"R\",\n                        \"justifyNm\": \"오른쪽정렬\",\n                        \"padding\": \"0\",\n                        \"fieldSetId\": \"\",\n                        \"parentNmKo\": \"\",\n                        \"parentNmEn\": \"\",\n                        \"requiredYn\": \"Y\",\n                        \"scale\": 0,\n                        \"koreanYn\": \"Y\",\n                        \"metaYn\": \"Y\",\n                        \"decimalPointYn\": \"N\",\n                        \"maskingYn\": \"N\",\n                        \"maskingPatternCd\": \"\",\n                        \"userKeyYn\": \"N\",\n                        \"pk\": \"N\",\n                        \"comments\": \"고객나이(문자)\",\n                        \"refDataSetId\": \"\",\n                        \"refDataFieldId\": \"\",\n                        \"delYn\": \"N\",\n                        \"regDate\": \"20210422091753814\",\n                        \"regId\": \"\",\n                        \"modDate\": \"\",\n                        \"modId\": \"\",\n                        \"valid\": false\n                    }\n                ],\n                \"complexTypeMap\": {},\n                \"comments\": \"\",\n                \"delYn\": \"N\",\n                \"regDate\": \"20210415154149978\",\n                \"regId\": \"shl\",\n                \"modDate\": \"20210420140430577\",\n                \"modId\": \"shl\",\n                \"regUser\": {\n                    \"objectType\": \"User\",\n                    \"objectType\": \"User\",\n                    \"companyNm\": \"\",\n                    \"departmentNm\": \"\",\n                    \"positionNm\": \"\",\n                    \"retired\": \"N\",\n                    \"userId\": \"shl\",\n                    \"password\": \"\",\n                    \"userNm\": \"포털개발자\",\n                    \"cellPhone\": \"\",\n                    \"phone\": \"\",\n                    \"email\": \"\",\n                    \"role\": null,\n                    \"delYn\": \"N\",\n                    \"regDate\": \"\",\n                    \"regId\": \"\",\n                    \"modDate\": \"\",\n                    \"modId\": \"\",\n                    \"dataAccessRoleList\": null\n                },\n                \"modUser\": {\n                    \"objectType\": \"User\",\n                    \"objectType\": \"User\",\n                    \"companyNm\": \"\",\n                    \"departmentNm\": \"\",\n                    \"positionNm\": \"\",\n                    \"retired\": \"N\",\n                    \"userId\": \"shl\",\n                    \"password\": \"\",\n                    \"userNm\": \"포털개발자\",\n                    \"cellPhone\": \"\",\n                    \"phone\": \"\",\n                    \"email\": \"\",\n                    \"role\": null,\n                    \"delYn\": \"N\",\n                    \"regDate\": \"\",\n                    \"regId\": \"\",\n                    \"modDate\": \"\",\n                    \"modId\": \"\",\n                    \"dataAccessRoleList\": null\n                }\n            },\n            \"31\": {\n                \"objectType\": \"DataSet\",\n                \"objectType\": \"DataSet\",\n                \"dataSetId\": \"31\",\n                \"name1\": \"고객계좌정보결과\",\n                \"name2\": \"accountInfoResult\",\n                \"cd\": \"ONNBZ1999_O\",\n                \"dataFormat\": \"3\",\n                \"dataFormatNm\": \"fixedlength\",\n                \"encryptType\": \"N\",\n                \"encryptTypeNm\": \"\",\n                \"length\": 13,\n                \"isStandard\": \"N\",\n                \"use\": \"Y\",\n                \"isMapped\": \"N\",\n                \"isRoot\": \"Y\",\n                \"recordDelimiter\": \"\\n\",\n                \"fieldDelimiter\": \",\",\n                \"dataFieldList\": [\n                    {\n                        \"objectType\": \"DataField\",\n                        \"objectType\": \"DataField\",\n                        \"id\": \"1\",\n                        \"parentId\": null,\n                        \"dataSetId\": \"31\",\n                        \"dataFieldId\": \"1\",\n                        \"seq\": 1,\n                        \"name1\": \"성명\",\n                        \"name2\": \"name\",\n                        \"cd\": \"name\",\n                        \"type\": \"0\",\n                        \"typeNm\": \"string\",\n                        \"offset\": 0,\n                        \"length\": 10,\n                        \"encryptType\": \"\",\n                        \"encryptTypeNm\": \"\",\n                        \"isLengthField\": \"N\",\n                        \"repeatCount\": 0,\n                        \"hasRepeatCountField\": \"N\",\n                        \"repeatFieldId\": \"\",\n                        \"repeatDataSetId\": \"\",\n                        \"defaultValue\": \"default\",\n                        \"justify\": \"L\",\n                        \"justifyNm\": \"왼쪽정렬\",\n                        \"padding\": \" \",\n                        \"fieldSetId\": \"\",\n                        \"parentNmKo\": \"\",\n                        \"parentNmEn\": \"\",\n                        \"requiredYn\": \"Y\",\n                        \"scale\": 0,\n                        \"koreanYn\": \"Y\",\n                        \"metaYn\": \"Y\",\n                        \"decimalPointYn\": \"N\",\n                        \"maskingYn\": \"N\",\n                        \"maskingPatternCd\": \"\",\n                        \"userKeyYn\": \"N\",\n                        \"pk\": \"N\",\n                        \"comments\": \"고객명\",\n                        \"refDataSetId\": \"\",\n                        \"refDataFieldId\": \"\",\n                        \"delYn\": \"N\",\n                        \"regDate\": \"20210422091753832\",\n                        \"regId\": \"\",\n                        \"modDate\": \"\",\n                        \"modId\": \"\",\n                        \"valid\": false\n                    },\n                    {\n                        \"objectType\": \"DataField\",\n                        \"objectType\": \"DataField\",\n                        \"id\": \"2\",\n                        \"parentId\": null,\n                        \"dataSetId\": \"31\",\n                        \"dataFieldId\": \"2\",\n                        \"seq\": 2,\n                        \"name1\": \"나이\",\n                        \"name2\": \"age\",\n                        \"cd\": \"age\",\n                        \"type\": \"0\",\n                        \"typeNm\": \"string\",\n                        \"offset\": 10,\n                        \"length\": 3,\n                        \"encryptType\": \"\",\n                        \"encryptTypeNm\": \"\",\n                        \"isLengthField\": \"N\",\n                        \"repeatCount\": 0,\n                        \"hasRepeatCountField\": \"N\",\n                        \"repeatFieldId\": \"\",\n                        \"repeatDataSetId\": \"\",\n                        \"defaultValue\": \"000\",\n                        \"justify\": \"R\",\n                        \"justifyNm\": \"오른쪽정렬\",\n                        \"padding\": \"0\",\n                        \"fieldSetId\": \"\",\n                        \"parentNmKo\": \"\",\n                        \"parentNmEn\": \"\",\n                        \"requiredYn\": \"Y\",\n                        \"scale\": 0,\n                        \"koreanYn\": \"Y\",\n                        \"metaYn\": \"Y\",\n                        \"decimalPointYn\": \"N\",\n                        \"maskingYn\": \"N\",\n                        \"maskingPatternCd\": \"\",\n                        \"userKeyYn\": \"N\",\n                        \"pk\": \"N\",\n                        \"comments\": \"고객나이(문자)\",\n                        \"refDataSetId\": \"\",\n                        \"refDataFieldId\": \"\",\n                        \"delYn\": \"N\",\n                        \"regDate\": \"20210422091753833\",\n                        \"regId\": \"\",\n                        \"modDate\": \"\",\n                        \"modId\": \"\",\n                        \"valid\": false\n                    }\n                ],\n                \"complexTypeMap\": {},\n                \"comments\": \"\",\n                \"delYn\": \"N\",\n                \"regDate\": \"20210415154149978\",\n                \"regId\": \"shl\",\n                \"modDate\": \"20210420140430577\",\n                \"modId\": \"shl\",\n                \"regUser\": {\n                    \"objectType\": \"User\",\n                    \"objectType\": \"User\",\n                    \"companyNm\": \"\",\n                    \"departmentNm\": \"\",\n                    \"positionNm\": \"\",\n                    \"retired\": \"N\",\n                    \"userId\": \"shl\",\n                    \"password\": \"\",\n                    \"userNm\": \"포털개발자\",\n                    \"cellPhone\": \"\",\n                    \"phone\": \"\",\n                    \"email\": \"\",\n                    \"role\": null,\n                    \"delYn\": \"N\",\n                    \"regDate\": \"\",\n                    \"regId\": \"\",\n                    \"modDate\": \"\",\n                    \"modId\": \"\",\n                    \"dataAccessRoleList\": null\n                },\n                \"modUser\": {\n                    \"objectType\": \"User\",\n                    \"objectType\": \"User\",\n                    \"companyNm\": \"\",\n                    \"departmentNm\": \"\",\n                    \"positionNm\": \"\",\n                    \"retired\": \"N\",\n                    \"userId\": \"shl\",\n                    \"password\": \"\",\n                    \"userNm\": \"포털개발자\",\n                    \"cellPhone\": \"\",\n                    \"phone\": \"\",\n                    \"email\": \"\",\n                    \"role\": null,\n                    \"delYn\": \"N\",\n                    \"regDate\": \"\",\n                    \"regId\": \"\",\n                    \"modDate\": \"\",\n                    \"modId\": \"\",\n                    \"dataAccessRoleList\": null\n                }\n            }\n        },\n        \"mappingMap\": {},\n        \"regDate\": \"20210422091753833\",\n        \"regId\": \"shl\",\n        \"modDate\": \"20210422091753833\",\n        \"modId\": \"shl\"\n    },\n  \"startTime\": \"20190416105001001\",\n  \"endTime\": null,\n  \"errorCd\":\"0\",\n  \"errorMsg\":\"\",\n  \"userId\": \"iip\",\n  \"appId\": \"\",\n  \"checkSession\":false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/mint/openapi/models/requirement-models?method=PUT",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"mint",
+						"openapi",
+						"models",
+						"requirement-models"
+					],
+					"query": [
+						{
+							"key": "method",
+							"value": "PUT"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "modifyDataSet",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"objectType\": \"ComMessage\",\n  \"requestObject\":{\n        \"objectType\": \"DataSet\",\n        \"dataSetId\": \"30\",\n        \"name1\": \"고객계좌정보\",\n        \"name2\": \"accountInfo\",\n        \"cd\": \"ONNBZ1999_I\",\n        \"dataFormat\": \"3\",\n        \"dataFormatNm\": \"fixedlength\",\n        \"encryptType\": \"N\",\n        \"encryptTypeNm\": \"\",\n        \"length\": 13,\n        \"isStandard\": \"Y\",\n        \"use\": \"Y\",\n        \"isMapped\": \"N\",\n        \"isRoot\": \"Y\",\n        \"recordDelimiter\": \"\\n\",\n        \"fieldDelimiter\": \",\",\n        \"dataFieldList\": [\n            {\n                \"objectType\": \"DataField\",\n                \"objectType\": \"DataField\",\n                \"id\": \"1\",\n                \"parentId\": null,\n                \"dataSetId\": \"30\",\n                \"dataFieldId\": \"1\",\n                \"seq\": 1,\n                \"name1\": \"성명\",\n                \"name2\": \"name\",\n                \"cd\": \"name\",\n                \"type\": \"0\",\n                \"typeNm\": \"string\",\n                \"offset\": 0,\n                \"length\": 10,\n                \"encryptType\": \"\",\n                \"encryptTypeNm\": \"\",\n                \"isLengthField\": \"N\",\n                \"repeatCount\": 0,\n                \"hasRepeatCountField\": \"N\",\n                \"repeatFieldId\": \"\",\n                \"repeatDataSetId\": \"\",\n                \"defaultValue\": \"default\",\n                \"justify\": \"L\",\n                \"justifyNm\": \"왼쪽정렬\",\n                \"padding\": \" \",\n                \"fieldSetId\": \"\",\n                \"parentNmKo\": \"\",\n                \"parentNmEn\": \"\",\n                \"requiredYn\": \"Y\",\n                \"scale\": 0,\n                \"koreanYn\": \"Y\",\n                \"metaYn\": \"Y\",\n                \"decimalPointYn\": \"N\",\n                \"maskingYn\": \"N\",\n                \"maskingPatternCd\": \"\",\n                \"userKeyYn\": \"N\",\n                \"pk\": \"N\",\n                \"comments\": \"고객명\",\n                \"refDataSetId\": \"\",\n                \"refDataFieldId\": \"\",\n                \"delYn\": \"N\",\n                \"regDate\": \"20210422091550838\",\n                \"regId\": \"\",\n                \"modDate\": \"\",\n                \"modId\": \"\",\n                \"valid\": false\n            },\n            {\n                \"objectType\": \"DataField\",\n                \"objectType\": \"DataField\",\n                \"id\": \"2\",\n                \"parentId\": null,\n                \"dataSetId\": \"30\",\n                \"dataFieldId\": \"2\",\n                \"seq\": 2,\n                \"name1\": \"나이\",\n                \"name2\": \"age\",\n                \"cd\": \"age\",\n                \"type\": \"0\",\n                \"typeNm\": \"string\",\n                \"offset\": 10,\n                \"length\": 3,\n                \"encryptType\": \"\",\n                \"encryptTypeNm\": \"\",\n                \"isLengthField\": \"N\",\n                \"repeatCount\": 0,\n                \"hasRepeatCountField\": \"N\",\n                \"repeatFieldId\": \"\",\n                \"repeatDataSetId\": \"\",\n                \"defaultValue\": \"000\",\n                \"justify\": \"R\",\n                \"justifyNm\": \"오른쪽정렬\",\n                \"padding\": \"0\",\n                \"fieldSetId\": \"\",\n                \"parentNmKo\": \"\",\n                \"parentNmEn\": \"\",\n                \"requiredYn\": \"Y\",\n                \"scale\": 0,\n                \"koreanYn\": \"Y\",\n                \"metaYn\": \"Y\",\n                \"decimalPointYn\": \"N\",\n                \"maskingYn\": \"N\",\n                \"maskingPatternCd\": \"\",\n                \"userKeyYn\": \"N\",\n                \"pk\": \"N\",\n                \"comments\": \"고객나이(문자)\",\n                \"refDataSetId\": \"\",\n                \"refDataFieldId\": \"\",\n                \"delYn\": \"N\",\n                \"regDate\": \"20210422091550839\",\n                \"regId\": \"\",\n                \"modDate\": \"\",\n                \"modId\": \"\",\n                \"valid\": false\n            }\n        ],\n        \"complexTypeMap\": {},\n        \"comments\": \"\",\n        \"delYn\": \"N\",\n        \"regDate\": \"20210415154149978\",\n        \"regId\": \"shl\",\n        \"modDate\": \"20210420140430577\",\n        \"modId\": \"shl\",\n        \"regUser\": {\n            \"objectType\": \"User\",\n            \"objectType\": \"User\",\n            \"companyNm\": \"\",\n            \"departmentNm\": \"\",\n            \"positionNm\": \"\",\n            \"retired\": \"N\",\n            \"userId\": \"shl\",\n            \"password\": \"\",\n            \"userNm\": \"포털개발자\",\n            \"cellPhone\": \"\",\n            \"phone\": \"\",\n            \"email\": \"\",\n            \"role\": null,\n            \"delYn\": \"N\",\n            \"regDate\": \"\",\n            \"regId\": \"\",\n            \"modDate\": \"\",\n            \"modId\": \"\",\n            \"dataAccessRoleList\": null\n        },\n        \"modUser\": {\n            \"objectType\": \"User\",\n            \"objectType\": \"User\",\n            \"companyNm\": \"\",\n            \"departmentNm\": \"\",\n            \"positionNm\": \"\",\n            \"retired\": \"N\",\n            \"userId\": \"shl\",\n            \"password\": \"\",\n            \"userNm\": \"포털개발자\",\n            \"cellPhone\": \"\",\n            \"phone\": \"\",\n            \"email\": \"\",\n            \"role\": null,\n            \"delYn\": \"N\",\n            \"regDate\": \"\",\n            \"regId\": \"\",\n            \"modDate\": \"\",\n            \"modId\": \"\",\n            \"dataAccessRoleList\": null\n        }\n    },\n  \"startTime\": \"20190416105001001\",\n  \"endTime\": null,\n  \"errorCd\":\"0\",\n  \"errorMsg\":\"\",\n  \"userId\": \"iip\",\n  \"appId\": \"\",\n  \"checkSession\":false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/mint/openapi/models/datasets?method=PUT",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"mint",
+						"openapi",
+						"models",
+						"datasets"
+					],
+					"query": [
+						{
+							"key": "method",
+							"value": "PUT"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "findRequirementModel",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"objectType\": \"ComMessage\",\n  \"requestObject\":{\"serviceId\":\"OPENAPI-SERVICE-020\", \"channelCd\":\"FWS\", \"businessCd\":\"NCM\"},\n  \"startTime\": \"20190416105001001\",\n  \"endTime\": null,\n  \"errorCd\":\"0\",\n  \"errorMsg\":\"\",\n  \"userId\": \"iip\",\n  \"appId\": \"\",\n  \"checkSession\":false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/mint/openapi/models/requirement-models?method=GET",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"mint",
+						"openapi",
+						"models",
+						"requirement-models"
+					],
+					"query": [
+						{
+							"key": "method",
+							"value": "GET"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "findChannelByCd",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"objectType\": \"ComMessage\",\n  \"requestObject\":null,\n  \"startTime\": \"20190416105001001\",\n  \"endTime\": null,\n  \"errorCd\":\"0\",\n  \"errorMsg\":\"\",\n  \"userId\": \"iip\",\n  \"appId\": \"\",\n  \"checkSession\":false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/mint/openapi/models/channels/CUI?method=GET",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"mint",
+						"openapi",
+						"models",
+						"channels",
+						"CUI"
+					],
+					"query": [
+						{
+							"key": "method",
+							"value": "GET"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "findServerByCd",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"objectType\": \"ComMessage\",\n  \"requestObject\":null,\n  \"startTime\": \"20190416105001001\",\n  \"endTime\": null,\n  \"errorCd\":\"0\",\n  \"errorMsg\":\"\",\n  \"userId\": \"iip\",\n  \"appId\": \"\",\n  \"checkSession\":false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/mint/openapi/models/servers/BO1?method=GET",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"mint",
+						"openapi",
+						"models",
+						"servers",
+						"BO1"
+					],
+					"query": [
+						{
+							"key": "method",
+							"value": "GET"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "findSystemByCd",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"objectType\": \"ComMessage\",\n  \"requestObject\":null,\n  \"startTime\": \"20190416105001001\",\n  \"endTime\": null,\n  \"errorCd\":\"0\",\n  \"errorMsg\":\"\",\n  \"userId\": \"iip\",\n  \"appId\": \"\",\n  \"checkSession\":false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/mint/openapi/models/systems/CUI?method=GET",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"mint",
+						"openapi",
+						"models",
+						"systems",
+						"CUI"
+					],
+					"query": [
+						{
+							"key": "method",
+							"value": "GET"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getBusinessList",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"objectType\": \"ComMessage\",\n  \"requestObject\":null,\n  \"startTime\": \"20190416105001001\",\n  \"endTime\": null,\n  \"errorCd\":\"0\",\n  \"errorMsg\":\"\",\n  \"userId\": \"iip\",\n  \"appId\": \"\",\n  \"checkSession\":false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/mint/openapi/models/businesses?method=GET",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"mint",
+						"openapi",
+						"models",
+						"businesses"
+					],
+					"query": [
+						{
+							"key": "method",
+							"value": "GET"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "findBusinessByCd",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"objectType\": \"ComMessage\",\n  \"requestObject\":null,\n  \"startTime\": \"20190416105001001\",\n  \"endTime\": null,\n  \"errorCd\":\"0\",\n  \"errorMsg\":\"\",\n  \"userId\": \"iip\",\n  \"appId\": \"\",\n  \"checkSession\":false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/mint/openapi/models/businesses/NCM?method=GET",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"mint",
+						"openapi",
+						"models",
+						"businesses",
+						"NCM"
+					],
+					"query": [
+						{
+							"key": "method",
+							"value": "GET"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getSystemList",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"objectType\": \"ComMessage\",\n  \"requestObject\":null,\n  \"startTime\": \"20190416105001001\",\n  \"endTime\": null,\n  \"errorCd\":\"0\",\n  \"errorMsg\":\"\",\n  \"userId\": \"iip\",\n  \"appId\": \"\",\n  \"checkSession\":false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/mint/openapi/models/systems?method=GET",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"mint",
+						"openapi",
+						"models",
+						"systems"
+					],
+					"query": [
+						{
+							"key": "method",
+							"value": "GET"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getServerList",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"objectType\": \"ComMessage\",\n  \"requestObject\":null,\n  \"startTime\": \"20190416105001001\",\n  \"endTime\": null,\n  \"errorCd\":\"0\",\n  \"errorMsg\":\"\",\n  \"userId\": \"iip\",\n  \"appId\": \"\",\n  \"checkSession\":false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/mint/openapi/models/servers?method=GET",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"mint",
+						"openapi",
+						"models",
+						"servers"
+					],
+					"query": [
+						{
+							"key": "method",
+							"value": "GET"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getChannelList",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"objectType\": \"ComMessage\",\n  \"requestObject\":null,\n  \"startTime\": \"20190416105001001\",\n  \"endTime\": null,\n  \"errorCd\":\"0\",\n  \"errorMsg\":\"\",\n  \"userId\": \"iip\",\n  \"appId\": \"\",\n  \"checkSession\":false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/mint/openapi/models/channels?method=GET",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"mint",
+						"openapi",
+						"models",
+						"channels"
+					],
+					"query": [
+						{
+							"key": "method",
+							"value": "GET"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getUserList",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"objectType\": \"ComMessage\",\n  \"requestObject\":null,\n  \"startTime\": \"20190416105001001\",\n  \"endTime\": null,\n  \"errorCd\":\"0\",\n  \"errorMsg\":\"\",\n  \"userId\": \"iip\",\n  \"appId\": \"\",\n  \"checkSession\":false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/mint/openapi/models/users?method=GET",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"mint",
+						"openapi",
+						"models",
+						"users"
+					],
+					"query": [
+						{
+							"key": "method",
+							"value": "GET"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
