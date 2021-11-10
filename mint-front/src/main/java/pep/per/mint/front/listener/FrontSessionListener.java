@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSessionListener;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.springframework.web.servlet.FrameworkServlet;
@@ -19,7 +20,7 @@ import pep.per.mint.database.service.co.SecurityService;
 import pep.per.mint.front.controller.co.CommonController;
 import pep.per.mint.front.controller.co.SecurityController;
 import pep.per.mint.front.service.FrontSecurityService;
-
+ 
 public class FrontSessionListener implements HttpSessionListener {
 
 	private static final Logger logger = LoggerFactory.getLogger(CommonController.class);

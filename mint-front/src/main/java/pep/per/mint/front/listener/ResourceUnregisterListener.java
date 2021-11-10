@@ -3,6 +3,9 @@ package pep.per.mint.front.listener;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
+
+import org.springframework.stereotype.Component;
+
 import java.sql.Driver;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -11,6 +14,7 @@ import java.util.Enumeration;
 /**
  * Created by Solution TF on 15. 11. 11..
  */
+ 
 public class ResourceUnregisterListener implements ServletContextListener {
 
     @Override
